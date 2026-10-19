@@ -1,0 +1,91 @@
+{
+  "input": "{\n \"finding\": \"100-004294 has no export classification: Aerospace Systems is an export-controlled business unit\",\n \"part\": {\n  \"part_number\": \"100-004294\",\n  \"description\": \"HEX BOLT M5X50 SS316\",\n  \"part_type\": \"Fastener\",\n  \"business_unit\": \"Aerospace Systems\",\n  \"material\": \"STAINLESS STEEL 316\",\n  \"size\": \"M5X50\",\n  \"uom\": \"EA\",\n  \"weight_kg\": \"0.044\",\n  \"make_buy\": \"buy\",\n  \"lifecycle\": \"Released\",\n  \"export_class\": \"\",\n  \"created\": \"2013-07-15\",\n  \"created_by\": \"I. Moreau\",\n  \"used_in\": \"1\"\n },\n \"controlled_assemblies_using_it\": []\n}",
+  "output": {
+    "summary": "100-004294 is a released, purchased M5X50 hex bolt in stainless steel 316 (fastener) belonging to the Aerospace Systems business unit. Its export classification field is empty, and because Aerospace Systems is an export-controlled business unit, Trade Compliance must make a classification decision.",
+    "evidence": [
+      {
+        "text": "The part is a purchased hex bolt, M5X50, made of stainless steel 316, typed as a fastener.",
+        "cites": [
+          {
+            "part_number": "100-004294",
+            "field": "description",
+            "value": "HEX BOLT M5X50 SS316"
+          },
+          {
+            "part_number": "100-004294",
+            "field": "part_type",
+            "value": "Fastener"
+          },
+          {
+            "part_number": "100-004294",
+            "field": "material",
+            "value": "STAINLESS STEEL 316"
+          },
+          {
+            "part_number": "100-004294",
+            "field": "size",
+            "value": "M5X50"
+          },
+          {
+            "part_number": "100-004294",
+            "field": "make_buy",
+            "value": "buy"
+          }
+        ]
+      },
+      {
+        "text": "The part is released, owned by Aerospace Systems, and has no export classification recorded.",
+        "cites": [
+          {
+            "part_number": "100-004294",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "100-004294",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "100-004294",
+            "field": "export_class",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "text": "The part is recorded as used in one assembly, but no controlled assemblies using it were identified in the data provided.",
+        "cites": [
+          {
+            "part_number": "100-004294",
+            "field": "used_in",
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "text": "The part was created in 2013 by I. Moreau, who may be able to explain its origin and intended use.",
+        "cites": [
+          {
+            "part_number": "100-004294",
+            "field": "created",
+            "value": "2013-07-15"
+          },
+          {
+            "part_number": "100-004294",
+            "field": "created_by",
+            "value": "I. Moreau"
+          }
+        ]
+      }
+    ],
+    "questions": [
+      "Is this bolt a standard catalog/commercial fastener (e.g., to an ISO/DIN standard), or was it made to a company or customer-specific drawing?",
+      "Was the bolt specially designed or modified (dimensions, coatings, tolerances, material treatment) for any defense or aerospace article?",
+      "Which assembly is the one recorded usage, and what end item and program does that assembly support?",
+      "Who is the supplier, and does the supplier provide an export classification for this part?",
+      "Does any technical data (drawings, specifications) associated with this part originate from a government or defense customer?",
+      "Is the part used, or planned for use, in any other Aerospace Systems products beyond the current single usage?"
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+  <h1>Engineering changes</h1>
+  {% if ds %}<span class="muted">{{ ds.name }} · {{ '{:,}'.format(ds.ecos) }} ECOs · as of {{ ds.as_of.strftime('%Y-%m-%d') }}</span>{% endif %}
+</div>
+{% if message %}<div class="banner error" role="alert"><span class="material-symbols-outlined">error</span><div>{{ message }}</div></div>{% endif %}
+{% if notice %}<div class="banner success"><span class="material-symbols-outlined">check_circle</span><div>{{ notice }}</div></div>{% endif %}
+{% if not a %}
+<div class="card"><div class="empty"><span class="material-symbols-outlined">change_circle</span><h3>No ECO history loaded</h3><p><a href="/data">Import an ECO export.</a></p></div></div>
+{% else %}
+<form method="get" action="/ecos" class="card card-body eco-find">
+  <span class="material-symbols-outlined">search</span>
+  <input type="search" name="q" value="{{ q }}" placeholder="Where is my ECO? Search by ECO number, title, or originator" aria-label="Find an ECO">
+  <button class="button contained" type="submit">Find</button>
+</form>
+{% if q %}
+<div class="card">
+  <div class="card-header"><h3>Results for "{{ q }}"</h3><span class="muted" style="margin-left:auto">{{ results | length }}{{ '+' if results | length == 30 }}</span></div>
+  {% if results %}<table><thead><tr><th>ECO</th><th>Title</th><th>Unit</th><th>Status</th><th>Created</th></tr></thead><tbody>
+  {% for e in results %}<tr><td class="mono"><a href="/ecos/{{ e.eco }}">{{ e.eco }}</a></td><td>{{ e.title }}</td><td>{{ e.business_unit }}</td><td>{{ e.status }}</td><td>{{ e.created.strftime('%Y-%m-%d') }}</td></tr>{% endfor %}
+  </tbody></table>{% else %}<div class="card-body muted">No ECOs match.</div>{% endif %}
+</div>
+{% endif %}
+
+<div class="kpis kpis-4">
+  <div class="card kpi"><div class="overline">Median cycle time</div><div class="big">{{ a.cycle_median }} <small>days</small></div><div class="muted">80% finish within {{ a.cycle_p80 }} days · {{ '{:,}'.format(a.released) }} released</div></div>
+  <div class="card kpi"><div class="overline">Returned at least once</div><div class="big">{{ a.return_rate }}%</div><div class="muted">{{ a.returned }} of {{ '{:,}'.format(a.reviewed) }} reviewed ECOs</div></div>
+  <div class="card kpi"><div class="overline">Open</div><div class="big">{{ a.open | length }}</div><div class="muted">in review, board, implementation, or rework</div></div>
+  <div class="card kpi {{ 'kpi-warn' if a.warnings }}"><div class="overline">Slow ECOs</div><div class="big">{{ a.warnings | length }}</div><div class="muted"><a href="#slow">warnings by rule</a></div></div>
+</div>
+
+<div class="grid-2">
+  <div>
+    <div class="card" id="why">
+      <div class="card-header"><span class="material-symbols-outlined" style="color:var(--primary)">auto_awesome</span><h3>Why ECOs are sent back</h3>
+        {% if themes %}<span class="chip {{ 'trace-unverified' if themes.flagged else 'trace-traced' }}" style="margin-left:auto">{{ (themes.flagged ~ ' flagged') if themes.flagged else 'all citations checked' }}</span>{% endif %}</div>
+      <div class="card-body">
+      {% if themes %}
+        <p style="margin-top:0"><strong>{{ themes.analysis.headline }}</strong></p>
+        {% for t in themes.themes %}
+        <div class="theme {{ 'flagged' if t.problems }}">
+          <div class="theme-head"><span class="primary">{{ t.theme.name }}</span>
+            <span class="share-bar" title="{{ t.share }}% of returns"><span style="width:{{ t.share }}%"></span></span>
+            <span class="num">{{ t.count }} <span class="muted">({{ t.share }}%)</span></span></div>
+          <div class="muted" style="font-size:13px">{{ t.theme.description }}</div>
+          {% for eco, quote, ok in t.quotes %}<div class="quote {{ '' if ok else 'not-found' }}">"{{ quote }}" <a class="mono" href="/ecos/{{ eco }}">{{ eco }}</a>{% if not ok %} <span class="chip trace-unverified">quote not found</span>{% endif %}</div>{% endfor %}
+          <div class="prevent"><span class="material-symbols-outlined">shield</span><span><strong>Prevent:</strong> {{ t.theme.prevention }}</span>
+            {% if suite_connected and user.approver %}<form method="post" action="/ecos/themes/{{ loop.index0 }}/send"><button class="button text" type="submit">Send to Backlog Pilot</button></form>{% endif %}</div>
+          {% for prob in t.problems %}<div class="issue-line">{{ prob }}</div>{% endfor %}
+        </div>
+        {% endfor %}
+        {% if themes.unassigned %}<div class="issue-line">{{ themes.unassigned | length }} return{{ '' if themes.unassigned | length == 1 else 's' }} not placed in any theme.</div>{% endif %}
+        <div class="muted" style="font-size:12px;margin-top:8px">{{ themes.record.window }}. {{ themes.record.drafted_by }}, requested by {{ themes.record.requested_by }}. Counts and shares are of returns, computed from the ECO ids the AI cited, each checked against the returns; quotes are checked word for word.</div>
+      {% else %}
+        <p style="margin-top:0;font-size:13px">{{ window[:1] | upper }}{{ window[1:] }} in the last six months. The AI can group the reviewers' comments into causes and suggest a control that prevents each one. Code checks every ECO it cites and every quote, and does the counting.</p>
+      {% endif %}
+      {% if user.approver %}<form method="post" action="/ecos/why" onsubmit="this.querySelector('button').disabled=true">
+        <button class="button {{ 'text' if themes else 'outlined' }}" type="submit"><span class="material-symbols-outlined">auto_awesome</span>{{ 'Run again' if themes else 'Find the causes' }}</button></form>{% endif %}
+      </div>
+    </div>
+
+    <div class="card" id="slow">
+      <div class="card-header"><h3>Slow ECOs</h3><span class="muted" style="margin-left:auto;font-size:12px">Rules: {{ eco_rules['ECO-SLOW-STAGE'] }}. {{ eco_rules['ECO-SLOW-TOTAL'] }}.</span></div>
+      {% if a.warnings %}
+      <table><thead><tr><th>ECO</th><th>Waiting in</th><th>With</th><th class="num">Days</th><th>Why flagged</th></tr></thead><tbody>
+      {% for w in a.warnings %}<tr><td class="mono"><a href="/ecos/{{ w.eco }}">{{ w.eco }}</a><div class="muted" style="font-size:12px;font-family:inherit">{{ w.unit }}</div></td><td>{{ w.stage }}</td><td>{{ w.actor }}</td><td class="num">{{ w.in_stage }}</td><td style="font-size:12px;white-space:normal">{{ w.why }}</td></tr>{% endfor %}
+      </tbody></table>
+      {% else %}<div class="card-body muted">No open ECO is slower than the rules allow.</div>{% endif %}
+    </div>
+  </div>
+
+  <div>
+    <div class="card">
+      <div class="card-header"><h3>By business unit</h3></div>
+      <table class="compact"><thead><tr><th>Unit</th><th class="num">Median</th><th class="num">80%</th><th class="num">Returned</th><th class="num">Open</th></tr></thead><tbody>
+      {% for u in a.by_unit %}<tr><td>{{ u.unit }}</td><td class="num">{{ u.median }}d</td><td class="num">{{ u.p80 }}d</td><td class="num">{{ u.return_rate }}%</td><td class="num">{{ u.open }}</td></tr>{% endfor %}
+      </tbody></table>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Where ECOs wait</h3><span class="muted" style="margin-left:auto;font-size:12px">Median days per visit</span></div>
+      {% set units = a.by_unit | map(attribute='unit') | list %}
+      <table class="heat"><thead><tr><th>Stage</th>{% for u in units %}<th class="num" title="{{ u }}">{{ u.split(' ')[0] }}</th>{% endfor %}<th class="num">All</th></tr></thead><tbody>
+      {% for s in stages %}<tr><td>{{ s }}</td>{% for u in units %}{% set v = a.stage_unit[s][u] %}<td class="num" style="background:rgba(244,119,33,{{ [v / 25, 0.6] | min }})">{{ v }}</td>{% endfor %}<td class="num"><strong>{{ a.stage_median[s] }}</strong></td></tr>{% endfor %}
+      </tbody></table>
+      <div class="card-body muted" style="font-size:12px">Returns by stage: {% for s, n in a.returns_by_stage.items() %}{{ s }} {{ n }}{{ ', ' if not loop.last }}{% endfor %}.</div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Bottleneck approvers</h3></div>
+      {% if a.bottlenecks %}
+      <table class="compact"><thead><tr><th>Approver</th><th>Stage</th><th class="num">Median</th><th class="num">ECOs</th></tr></thead><tbody>
+      {% for b in a.bottlenecks %}<tr><td>{{ b.actor }}</td><td>{{ b.stage }}</td><td class="num">{{ b.median }}d <span class="muted">({{ b.ratio }}× the {{ b.stage_median }}d stage median)</span></td><td class="num">{{ b.ecos }}</td></tr>{% endfor %}
+      </tbody></table>
+      {% else %}<div class="card-body muted">None.</div>{% endif %}
+      <div class="card-body muted" style="font-size:12px">Rule: {{ eco_rules['ECO-BOTTLENECK'] }}. A bottleneck is a workload or delegation question, not a performance verdict.</div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Cycle time by quarter released</h3></div>
+      <div class="card-body trend">
+      {% set top = a.trend | map(attribute='median') | max %}
+      {% for t in a.trend %}<div class="trend-row"><span class="mono">{{ t.quarter }}</span><span class="share-bar wide"><span style="width:{{ 100 * t.median / top }}%"></span></span><span class="num">{{ t.median }}d</span><span class="muted" style="font-size:12px">{{ t.released }} released{{ ' · partial' if t.partial }}</span></div>{% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% set attrs = [('description', 'Description'), ('part_type', 'Type'), ('business_unit', 'Business unit'), ('material', 'Material'), ('size', 'Size'), ('uom', 'UoM'), ('weight_kg', 'Weight (kg)'), ('make_buy', 'Make/buy'), ('lifecycle', 'Lifecycle'), ('export_class', 'Export class'), ('superseded_by', 'Superseded by'), ('created', 'Created'), ('created_by', 'Created by')] %}
+{% block content %}
+<div class="page-header">
+  <h1 class="long-title">{{ issue.title }}</h1>
+</div>
+<p class="muted" style="margin-top:-8px"><span class="mono">{{ issue.key }}</span> · <span class="chip sev-{{ issue.severity }}">{{ issue.severity }}</span> {{ rule_names[issue.rule] }} ({{ issue.rule }}): {{ rules[issue.rule][1] }}</p>
+{% if message %}<div class="banner error" role="alert"><span class="material-symbols-outlined">error</span><div>{{ message }}</div></div>{% endif %}
+{% if notice %}<div class="banner success"><span class="material-symbols-outlined">check_circle</span><div>{{ notice }} Next open item below.</div></div>{% endif %}
+{% if issue.note %}<div class="banner warning"><span class="material-symbols-outlined">history</span><div>{{ issue.note }}</div></div>{% endif %}
+
+<div class="grid-2">
+  <div>
+    <div class="card">
+      <div class="card-header"><h3>Evidence</h3>{% if issue.rule == 'DQ-DUP' %}<span class="muted" style="margin-left:auto;font-size:12px">Highlighted values differ between the parts.</span>{% endif %}</div>
+      <div class="table-scroll">
+      <table class="evidence">
+        <thead><tr><th></th>{% for pn in issue.part_list %}<th>{% if parts.get(pn) %}<a class="mono" href="/parts/{{ pn }}">{{ pn }}</a>{% else %}<span class="mono">{{ pn }}</span>{% endif %}
+          {% if fix.survivor == pn %}<span class="chip trace-traced">proposed keep</span>{% endif %}</th>{% endfor %}</tr></thead>
+        <tbody>
+        {% for field, label in attrs %}
+          <tr><th>{{ label }}</th>
+          {% set ns = namespace(vals=[]) %}{% for pn in issue.part_list %}{% set ns.vals = ns.vals + [parts[pn][field] if parts.get(pn) else ''] %}{% endfor %}
+          {% for v in ns.vals %}<td class="{{ 'differs' if issue.rule == 'DQ-DUP' and ns.vals | unique | list | length > 1 and field not in ('created', 'created_by') }}">{% if not parts.get(issue.part_list[loop.index0]) %}<span class="chip trace-unverified">not in the export</span>{% elif v %}{{ v }}{% else %}<span class="muted">empty</span>{% endif %}</td>{% endfor %}
+          </tr>
+        {% endfor %}
+          <tr><th>Used in</th>{% for pn in issue.part_list %}<td>{{ usage[pn] | length }} assembl{{ 'y' if usage[pn] | length == 1 else 'ies' }}</td>{% endfor %}</tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>What the rule saw</h3></div>
+      <div class="card-body">
+        <dl class="facts-list">
+        {% for k, v in evidence.items() %}
+          <dt>{{ k.replace('_', ' ') }}</dt>
+          <dd>{% if v is mapping %}{% for a, b in v.items() %}<span class="mono">{{ a }}</span>: {{ b }}{{ '; ' if not loop.last }}{% endfor %}
+              {% elif v is iterable and v is not string %}{% for x in v %}{% if x is string and x | length == 10 and x[3] == '-' %}<a class="mono" href="/parts/{{ x }}">{{ x }}</a>{% else %}{{ x }}{% endif %}{{ ', ' if not loop.last }}{% else %}none{% endfor %}
+              {% else %}{{ v }}{% endif %}</dd>
+        {% endfor %}
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="card">
+      <div class="card-header"><h3>{{ 'Decision' if issue.status != 'open' else ('Classification review' if issue.queue == 'compliance' else 'Proposed fix') }}</h3></div>
+      <div class="card-body">
+      {% if issue.status != 'open' %}
+        <p style="margin-top:0"><span class="chip {{ 'trace-traced' if issue.status == 'accepted' else 'outlined' }}">{{ issue.status }}</span>
+          by {{ issue.decided_by }}, {{ issue.decided_at.strftime('%Y-%m-%d %H:%M') }} UTC</p>
+        {% if issue.value %}<p>Value: <strong>{{ issue.value }}</strong></p>{% endif %}
+        {% if issue.reason %}<p>Reason: {{ issue.reason }}</p>{% endif %}
+        {% if issue.status == 'accepted' %}<p class="muted" style="font-size:13px">Included in the <a href="/changes">change list</a> for the PLM bulk update. Nothing has been changed in PLM.</p>{% endif %}
+      {% else %}
+        {% if issue.rule == 'DQ-DUP' and fix.classification_conflict %}
+          <div class="banner warning" style="margin:0 0 12px"><span class="material-symbols-outlined">gpp_maybe</span><div>Export classifications differ ({{ evidence.export_classes | join(', ') }}). Merging changes the classification wherever the retired parts are used, so only Trade Compliance can approve this merge.</div></div>
+        {% endif %}
+        {% if issue.rule == 'DQ-DUP' %}
+          <p style="margin-top:0">Merge into one part and retire the others: their BOM uses switch to the kept part. Proposed keep <a class="mono" href="/parts/{{ fix.survivor }}">{{ fix.survivor }}</a>: {{ fix.why }}.</p>
+        {% elif issue.rule == 'DQ-EXP' %}
+          <p style="margin-top:0">This part needs an export classification decision. The tool does not suggest one; it shows the evidence. {{ evidence.reason[:1] | upper }}{{ evidence.reason[1:] }}.</p>
+        {% elif issue.rule == 'DQ-OBS' %}
+          <p style="margin-top:0">Replace obsolete <span class="mono">{{ fix.old }}</span> at find {{ fix.find_number }} in <span class="mono">{{ fix.parent }}</span>{% if fix.new %} with its recorded successor <a class="mono" href="/parts/{{ fix.new }}">{{ fix.new }}</a>{% else %}; no successor is on record{% endif %}.</p>
+        {% elif issue.rule == 'DQ-REL' %}
+          <p style="margin-top:0">Route <a class="mono" href="/parts/{{ fix.part }}">{{ fix.part }}</a> for release, or take it out of the released assembly.</p>
+        {% elif issue.rule == 'DQ-ORPHAN' %}
+          <p style="margin-top:0">Remove find {{ fix.find_number }} (<span class="mono">{{ fix.child }}</span>) from <span class="mono">{{ fix.parent }}</span>{% if evidence.near_matches %}, or correct it; similar existing numbers: {% for x in evidence.near_matches %}<a class="mono" href="/parts/{{ x }}">{{ x }}</a>{{ ', ' if not loop.last }}{% endfor %}{% endif %}.</p>
+        {% elif issue.rule == 'DQ-UOM' %}
+          <p style="margin-top:0">Set the unit of measure to {{ fix.uom }} on {{ fix.lines | length }} BOM line{{ '' if fix.lines | length == 1 else 's' }}.</p>
+        {% elif issue.rule == 'DQ-ATTR' %}
+          <p style="margin-top:0">Fill in the {{ fix.fields | join(' and ') | replace('_kg', '') }}.</p>
+        {% endif %}
+
+        {% if issue.queue == 'compliance' and not user.compliance %}
+          <div class="banner info" style="margin:0"><span class="material-symbols-outlined">lock</span><div>Only Trade Compliance can decide this. Switch "acting as" to the Export Compliance Manager to see the form.</div></div>
+        {% elif not user.approver %}
+          <div class="banner info" style="margin:0"><span class="material-symbols-outlined">lock</span><div>Data stewards decide fixes.</div></div>
+        {% else %}
+        <form method="post" action="/issues/{{ issue.id }}/decide" class="decide">
+          {% if issue.rule == 'DQ-DUP' %}
+            <div class="overline">Part to keep</div>
+            {% for pn in issue.part_list %}<label class="radio"><input type="radio" name="value" value="{{ pn }}" {{ 'checked' if pn == fix.survivor }}> <span class="mono">{{ pn }}</span> <span class="muted">{{ parts[pn].description if parts.get(pn) }}</span></label>{% endfor %}
+          {% elif issue.rule == 'DQ-EXP' %}
+            <label>Export classification <input name="value" placeholder="e.g. EAR99, 9A991" autocomplete="off"></label>
+          {% elif issue.rule == 'DQ-OBS' %}
+            <label>Replacement part <input name="value" value="{{ fix.new }}" placeholder="part number" autocomplete="off"></label>
+          {% elif issue.rule == 'DQ-ATTR' %}
+            <label>{{ fix.fields | join(' and ') | replace('_kg', ' (kg)') | capitalize }} <input name="value" autocomplete="off" placeholder="{{ 'e.g. ALUMINUM 6061-T6' if 'material' in fix.fields else 'e.g. 0.045' }}"></label>
+          {% endif %}
+          {% if issue.rule in ('DQ-DUP', 'DQ-OBS') %}<label class="change-reason">If you differ from the rule's proposal ({{ fix.survivor if issue.rule == 'DQ-DUP' else fix.new }}), say why <input name="change_reason" autocomplete="off" placeholder="e.g. the other part has the current drawing revision"></label>{% endif %}
+          {% set needs_tc = fix.classification_conflict and not user.compliance %}
+          <button class="button contained" type="submit" name="decision" value="accepted" {{ 'disabled' if needs_tc }}><span class="material-symbols-outlined">check</span>{{ 'Record classification' if issue.queue == 'compliance' else 'Accept fix' }}</button>
+          {% if needs_tc %}<span class="muted" style="font-size:12px">Waiting on Trade Compliance to approve the merge. You can still reject the finding.</span>{% endif %}
+          <details class="reject"><summary>Reject this finding</summary>
+            <label>Why is it wrong? <textarea name="reason" rows="2" placeholder="e.g. different torque rating, not a duplicate"></textarea></label>
+            <button class="button outlined" type="submit" name="decision" value="rejected">Reject with reason</button>
+          </details>
+        </form>
+        {% endif %}
+      {% endif %}
+      </div>
+    </div>
+    {% if ai_kind %}
+    <div class="card" id="ai">
+      <div class="card-header"><span class="material-symbols-outlined" style="color:var(--primary)">auto_awesome</span>
+        <h3>{{ 'AI review' if ai_kind == 'duplicates' else 'AI evidence packet' }}</h3>
+        {% if ai %}<span class="chip {{ 'trace-unverified' if ai.flagged else 'trace-traced' }}" style="margin-left:auto">{{ (ai.flagged ~ ' flagged') if ai.flagged else 'all values checked' }}</span>{% endif %}</div>
+      <div class="card-body">
+      {% if ai %}
+        {% set out = ai.output %}
+        {% for prob in ai.problems %}<div class="issue-line">{{ prob }}</div>{% endfor %}
+        {% if ai_kind == 'duplicates' %}
+          <p style="margin-top:0"><span class="chip {{ 'trace-traced' if out.verdict == 'same part' else 'outlined' }}">{{ out.verdict }}</span>
+            {% if out.keep %} keep <a class="mono" href="/parts/{{ out.keep }}">{{ out.keep }}</a>{% if out.keep != fix.survivor %} <span class="muted">(the rule proposed {{ fix.survivor }})</span>{% endif %}{% endif %}</p>
+        {% else %}
+          <p style="margin-top:0">{{ out.summary }}</p>
+        {% endif %}
+        <ul class="ai-points">
+        {% for cp in ai.points %}
+          <li class="{{ 'flagged' if cp.problems }}">{{ cp.point.text }}
+            <div class="cites">{% for c in cp.point.cites %}<span class="chip outlined cite-chip mono" title="{{ c.field }} of {{ c.part_number }}">{{ c.part_number }} · {{ c.field }} = {{ c.value or 'empty' }}</span>{% endfor %}</div>
+            {% for prob in cp.problems %}<div class="issue-line">{{ prob }}</div>{% endfor %}</li>
+        {% endfor %}
+        </ul>
+        {% set extra = out.before_merging if ai_kind == 'duplicates' else out.questions %}
+        {% if extra %}<div class="overline">{{ 'Check before merging' if ai_kind == 'duplicates' else 'Questions for engineering' }}</div>
+          <ul class="tight">{% for x in extra %}<li style="font-size:13px">{{ x }}</li>{% endfor %}</ul>{% endif %}
+        <div class="muted" style="font-size:12px">{{ ai.review.drafted_by }}, requested by {{ ai.review.requested_by }} · {{ ai.review.created_at.strftime('%Y-%m-%d %H:%M') }} UTC. Every cited value was compared with the export{% if ai_kind == 'compliance' %}; the AI never proposes a classification{% endif %}. The decision stays with you.</div>
+      {% else %}
+        <p style="margin-top:0;font-size:13px">{% if ai_kind == 'duplicates' %}Ask the AI whether these are really the same part and which to keep. Every point must cite part numbers and values, and code checks each one.{% else %}Ask the AI to assemble evidence for this classification decision. It never proposes a classification, and code removes anything that looks like one.{% endif %}</p>
+      {% endif %}
+      {% if user.approver and (ai_kind == 'duplicates' or user.compliance) %}
+        <form method="post" action="/issues/{{ issue.id }}/ai" onsubmit="this.querySelector('button').disabled=true">
+          <button class="button {{ 'text' if ai else 'outlined' }}" type="submit"><span class="material-symbols-outlined">auto_awesome</span>{{ 'Run again' if ai else ('Get AI review' if ai_kind == 'duplicates' else 'Get evidence packet') }}</button></form>
+      {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+  <h1>Data quality</h1>
+  {% if card %}<span class="muted">{{ card.dataset.name }} · {{ card.dataset.parts | plural('part') }}, {{ card.dataset.bom_lines | plural('BOM line') }} · loaded {{ card.dataset.loaded_at.strftime('%Y-%m-%d') }} by {{ card.dataset.loaded_by }}</span>{% endif %}
+</div>
+{% if message %}<div class="banner error" role="alert"><span class="material-symbols-outlined">error</span><div>{{ message }}</div></div>{% endif %}
+{% if notice %}<div class="banner success"><span class="material-symbols-outlined">check_circle</span><div>{{ notice }}</div></div>{% endif %}
+{% if not card %}
+<div class="card"><div class="empty"><span class="material-symbols-outlined">upload_file</span><h3>No export loaded</h3><p><a href="/data">Import a part master and BOM export.</a></p></div></div>
+{% else %}
+<div class="kpis">
+  <div class="card kpi"><div class="overline">Quality score</div><div class="big">{{ card.score }}%</div><div class="muted">parts with no open finding</div></div>
+  <div class="card kpi"><div class="overline">Open findings</div><div class="big">{{ '{:,}'.format(card.open) }}</div><div class="muted"><a href="/issues">steward queue</a> · <a href="/issues?queue=compliance">Trade Compliance</a></div></div>
+  <div class="card kpi"><div class="overline">Decided</div><div class="big">{{ '{:,}'.format(card.decided) }}</div><div class="muted"><a href="/changes">change list</a></div></div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header"><h3>By rule</h3><span class="muted" style="margin-left:auto;font-size:12px">Every finding comes from a readable rule; no AI decides what is wrong.</span></div>
+    <table>
+      <thead><tr><th>Rule</th><th>Severity</th><th class="num">Open</th><th class="num">Accepted</th><th class="num">Rejected</th>{% if suite_connected %}<th>Backlog Pilot</th>{% endif %}</tr></thead>
+      <tbody>
+      {% for r in card.rules %}
+        <tr>
+          <td><a class="primary" href="/issues?{{ 'queue=compliance&' if r.rule == 'DQ-EXP' }}rule={{ r.rule }}">{{ r.name }}</a> <span class="mono muted">{{ r.rule }}</span>
+            <div class="muted" style="font-size:12px;white-space:normal">{{ r.text }}</div></td>
+          <td><span class="chip sev-{{ r.severity }}">{{ r.severity }}</span></td>
+          <td class="num">{{ '{:,}'.format(r.open) }}</td><td class="num">{{ r.accepted }}</td><td class="num">{{ r.rejected }}</td>
+          {% if suite_connected %}<td><form method="post" action="/rules/{{ r.rule }}/send" title="Ask for a control in PLM that prevents new cases"><button class="button text" type="submit"><span class="material-symbols-outlined">send</span>Prevent</button></form></td>{% endif %}
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <div class="card">
+      <div class="card-header"><h3>By business unit</h3></div>
+      <table>
+        <thead><tr><th>Unit</th><th class="num">Parts</th><th class="num">Open</th><th class="num">Score</th></tr></thead>
+        <tbody>
+        {% for u in card.units %}
+          <tr><td><a href="/issues?unit={{ u.unit | urlencode }}">{{ u.unit }}</a></td><td class="num">{{ '{:,}'.format(u.parts) }}</td><td class="num">{{ u.open }}</td>
+            <td class="num"><span class="score-bar"><span style="width:{{ u.score }}%"></span></span> {{ u.score }}%</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% if detection %}
+    <div class="card">
+      <div class="card-header"><h3>Rule check on the demo data</h3></div>
+      <div class="card-body">
+        <p class="muted" style="margin-top:0;font-size:12px">The demo export was generated with known problems planted in it. This shows how many each rule found. It proves the rules work as written; real exports will be messier.</p>
+        <table>
+          <thead><tr><th>Rule</th><th class="num">Planted</th><th class="num">Found</th><th class="num">Flagged</th></tr></thead>
+          <tbody>{% for rule, d in detection.items() %}<tr><td>{{ rule_names[rule] }}</td><td class="num">{{ d.planted }}</td><td class="num">{{ d.found }}</td><td class="num">{{ d.flagged }}</td></tr>{% endfor %}</tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    {% if trend | length > 1 %}
+    <div class="card">
+      <div class="card-header"><h3>Across imports</h3></div>
+      <table><thead><tr><th>Export</th><th class="num">Findings</th><th class="num">Open</th></tr></thead>
+        <tbody>{% for t in trend %}<tr><td>{{ t.dataset.name }}<div class="muted" style="font-size:12px">{{ t.dataset.loaded_at.strftime('%Y-%m-%d') }}</div></td><td class="num">{{ t.findings }}</td><td class="num">{{ t.open }}</td></tr>{% endfor %}</tbody></table>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+{% endblock %}

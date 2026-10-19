@@ -1,0 +1,9 @@
+{
+  "_note": "Fictional demo users for the 'acting as' switcher. Data stewards decide fixes; only Trade Compliance decides export classification. Real sign-in (PI_AUTH=oidc) replaces this.",
+  "users": [
+    {"id": "steward", "name": "Avery Brooks", "role": "Engineering Data Steward", "approver": true},
+    {"id": "po", "name": "Jordan Lee", "role": "Senior Manager, IT Product Ownership", "approver": true},
+    {"id": "tc", "name": "Tomas Rivera", "role": "Export Compliance Manager", "approver": true, "compliance": true},
+    {"id": "eng", "name": "Kenji Watanabe", "role": "Senior Design Engineer", "approver": false}
+  ]
+}

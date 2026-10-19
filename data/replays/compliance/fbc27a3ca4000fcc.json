@@ -1,0 +1,91 @@
+{
+  "input": "{\n \"finding\": \"100-004436 has no export classification: Aerospace Systems is an export-controlled business unit\",\n \"part\": {\n  \"part_number\": \"100-004436\",\n  \"description\": \"Cover plate 290x65x2 stainless steel 304\",\n  \"part_type\": \"Sheet metal\",\n  \"business_unit\": \"Aerospace Systems\",\n  \"material\": \"STAINLESS STEEL 304\",\n  \"size\": \"290X65X2\",\n  \"uom\": \"EA\",\n  \"weight_kg\": \"0.098\",\n  \"make_buy\": \"make\",\n  \"lifecycle\": \"Released\",\n  \"export_class\": \"\",\n  \"created\": \"2022-08-24\",\n  \"created_by\": \"A. Novak\",\n  \"used_in\": \"3\"\n },\n \"controlled_assemblies_using_it\": []\n}",
+  "output": {
+    "summary": "100-004436 is a released, make-type stainless steel 304 sheet metal cover plate (290x65x2) owned by the Aerospace Systems business unit. It has no export classification recorded, and Aerospace Systems is an export-controlled business unit, so Trade Compliance must make a classification decision.",
+    "evidence": [
+      {
+        "text": "The part is a made-in-house sheet metal cover plate of stainless steel 304 measuring 290x65x2.",
+        "cites": [
+          {
+            "part_number": "100-004436",
+            "field": "description",
+            "value": "Cover plate 290x65x2 stainless steel 304"
+          },
+          {
+            "part_number": "100-004436",
+            "field": "part_type",
+            "value": "Sheet metal"
+          },
+          {
+            "part_number": "100-004436",
+            "field": "material",
+            "value": "STAINLESS STEEL 304"
+          },
+          {
+            "part_number": "100-004436",
+            "field": "size",
+            "value": "290X65X2"
+          },
+          {
+            "part_number": "100-004436",
+            "field": "make_buy",
+            "value": "make"
+          }
+        ]
+      },
+      {
+        "text": "The part belongs to the Aerospace Systems business unit, is in Released lifecycle, and its export classification field is empty.",
+        "cites": [
+          {
+            "part_number": "100-004436",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "100-004436",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "100-004436",
+            "field": "export_class",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "text": "The part is recorded as used in 3 assemblies, although none of those were supplied as controlled assemblies in this packet.",
+        "cites": [
+          {
+            "part_number": "100-004436",
+            "field": "used_in",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "text": "The part was created on 2022-08-24 by A. Novak, who would be the likely contact for design origin details.",
+        "cites": [
+          {
+            "part_number": "100-004436",
+            "field": "created",
+            "value": "2022-08-24"
+          },
+          {
+            "part_number": "100-004436",
+            "field": "created_by",
+            "value": "A. Novak"
+          }
+        ]
+      }
+    ],
+    "questions": [
+      "Which 3 assemblies use 100-004436, and what are their export classifications?",
+      "Was this cover plate designed specifically for a defense or aerospace end item, or is it a general-purpose design also used in commercial products?",
+      "Does the part have any features (hole patterns, tolerances, coatings, markings) that are specific to a controlled end item's form, fit, or function?",
+      "Was the design derived from customer-furnished or government-furnished technical data, or developed internally by A. Novak?",
+      "Is an equivalent cover plate used in any commercial or non-controlled product line?",
+      "Does the drawing or technical data package for this part carry any export control markings?"
+    ]
+  }
+}

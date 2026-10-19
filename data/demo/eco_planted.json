@@ -1,0 +1,14 @@
+{
+ "_note": "Patterns planted by scripts/generate_ecos.py.",
+ "as_of": "2026-10-01T09:00",
+ "bottleneck_approver": "M. Okonkwo",
+ "return_reason_shares": {
+  "affected parts": 0.36,
+  "cost impact": 0.24,
+  "drawing not updated": 0.16,
+  "effectivity": 0.12,
+  "export classification": 0.07,
+  "wrong change type": 0.05
+ },
+ "slowest_unit": "Aerospace Systems"
+}

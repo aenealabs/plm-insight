@@ -1,0 +1,150 @@
+{
+  "input": "{\n \"finding\": \"3 parts look like the same molded part (245X185X50, PA66 GF30)\",\n \"parts\": [\n  {\n   \"part_number\": \"100-008574\",\n   \"description\": \"Enclosure cover 245x185x50 pa66 gf30\",\n   \"part_type\": \"Molded part\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"PA66 GF30\",\n   \"size\": \"245X185X50\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.450\",\n   \"make_buy\": \"buy\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2019-12-31\",\n   \"created_by\": \"E. Duarte\",\n   \"used_in\": \"5\"\n  },\n  {\n   \"part_number\": \"210-005567\",\n   \"description\": \"Cover, Enclosure, 245 x 185 x 50, Pa66 Gf30\",\n   \"part_type\": \"Molded part\",\n   \"business_unit\": \"Electrical Products\",\n   \"material\": \"PA66 GF30\",\n   \"size\": \"245X185X50\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.441\",\n   \"make_buy\": \"buy\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2019-04-12\",\n   \"created_by\": \"C. Lindqvist\",\n   \"used_in\": \"3\"\n  },\n  {\n   \"part_number\": \"210-008573\",\n   \"description\": \"ENCLOSURE COVER 245X185X50 PA66-GF30\",\n   \"part_type\": \"Molded part\",\n   \"business_unit\": \"Industrial Controls\",\n   \"material\": \"PA66 GF30\",\n   \"size\": \"245X185X50\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.451\",\n   \"make_buy\": \"buy\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2023-03-09\",\n   \"created_by\": \"D. Mehta\",\n   \"used_in\": \"3\"\n  }\n ]\n}",
+  "output": {
+    "verdict": "same part",
+    "keep": "100-008574",
+    "reasons": [
+      {
+        "text": "All three parts are released molded enclosure covers with the same material and size.",
+        "cites": [
+          {
+            "part_number": "100-008574",
+            "field": "material",
+            "value": "PA66 GF30"
+          },
+          {
+            "part_number": "210-005567",
+            "field": "material",
+            "value": "PA66 GF30"
+          },
+          {
+            "part_number": "210-008573",
+            "field": "material",
+            "value": "PA66 GF30"
+          },
+          {
+            "part_number": "100-008574",
+            "field": "size",
+            "value": "245X185X50"
+          },
+          {
+            "part_number": "210-005567",
+            "field": "size",
+            "value": "245X185X50"
+          },
+          {
+            "part_number": "210-008573",
+            "field": "size",
+            "value": "245X185X50"
+          },
+          {
+            "part_number": "100-008574",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "210-005567",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "210-008573",
+            "field": "lifecycle",
+            "value": "Released"
+          }
+        ]
+      },
+      {
+        "text": "Their weights differ by only about 2 percent, which fits normal variation for the same molded part, and all share the same export classification.",
+        "cites": [
+          {
+            "part_number": "100-008574",
+            "field": "weight_kg",
+            "value": "0.450"
+          },
+          {
+            "part_number": "210-005567",
+            "field": "weight_kg",
+            "value": "0.441"
+          },
+          {
+            "part_number": "210-008573",
+            "field": "weight_kg",
+            "value": "0.451"
+          },
+          {
+            "part_number": "100-008574",
+            "field": "export_class",
+            "value": "EAR99"
+          },
+          {
+            "part_number": "210-005567",
+            "field": "export_class",
+            "value": "EAR99"
+          },
+          {
+            "part_number": "210-008573",
+            "field": "export_class",
+            "value": "EAR99"
+          }
+        ]
+      },
+      {
+        "text": "Part 100-008574 should be kept because it is used in the most assemblies, even though 210-005567 was created earlier.",
+        "cites": [
+          {
+            "part_number": "100-008574",
+            "field": "used_in",
+            "value": "5"
+          },
+          {
+            "part_number": "210-005567",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "210-008573",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "210-005567",
+            "field": "created",
+            "value": "2019-04-12"
+          },
+          {
+            "part_number": "100-008574",
+            "field": "created",
+            "value": "2019-12-31"
+          }
+        ]
+      },
+      {
+        "text": "The parts belong to three different business units, so the merge affects assemblies across organizations.",
+        "cites": [
+          {
+            "part_number": "100-008574",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "210-005567",
+            "field": "business_unit",
+            "value": "Electrical Products"
+          },
+          {
+            "part_number": "210-008573",
+            "field": "business_unit",
+            "value": "Industrial Controls"
+          }
+        ]
+      }
+    ],
+    "before_merging": [
+      "Confirm with the owners in Aerospace Systems, Electrical Products, and Industrial Controls (E. Duarte, C. Lindqvist, D. Mehta) that the covers are interchangeable in form, fit, and function.",
+      "Compare the drawings or models of the three parts to confirm no differences in features, color, or finish that the attributes do not capture.",
+      "Check whether the parts are bought from the same source, since all three are buy parts.",
+      "Review the 6 assemblies using 210-005567 and 210-008573 for where-used updates after the merge."
+    ]
+  }
+}

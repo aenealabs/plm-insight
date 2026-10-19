@@ -1,0 +1,96 @@
+{
+  "input": "{\n \"finding\": \"100-004112 has no export classification: Aerospace Systems is an export-controlled business unit\",\n \"part\": {\n  \"part_number\": \"100-004112\",\n  \"description\": \"Flat washer m3 stainless steel 316\",\n  \"part_type\": \"Fastener\",\n  \"business_unit\": \"Aerospace Systems\",\n  \"material\": \"STAINLESS STEEL 316\",\n  \"size\": \"M3\",\n  \"uom\": \"EA\",\n  \"weight_kg\": \"0.076\",\n  \"make_buy\": \"buy\",\n  \"lifecycle\": \"Obsolete\",\n  \"export_class\": \"\",\n  \"created\": \"2012-02-03\",\n  \"created_by\": \"K. Petrov\",\n  \"used_in\": \"0\"\n },\n \"controlled_assemblies_using_it\": []\n}",
+  "output": {
+    "summary": "100-004112 is a purchased M3 flat washer in 316 stainless steel, recorded as a Fastener in the Aerospace Systems business unit and currently marked Obsolete. It has a blank export classification even though Aerospace Systems is an export-controlled business unit, so Trade Compliance must make a classification decision.",
+    "evidence": [
+      {
+        "text": "The part is described as a flat washer, M3 size, made of 316 stainless steel, and is typed as a Fastener.",
+        "cites": [
+          {
+            "part_number": "100-004112",
+            "field": "description",
+            "value": "Flat washer m3 stainless steel 316"
+          },
+          {
+            "part_number": "100-004112",
+            "field": "part_type",
+            "value": "Fastener"
+          },
+          {
+            "part_number": "100-004112",
+            "field": "material",
+            "value": "STAINLESS STEEL 316"
+          },
+          {
+            "part_number": "100-004112",
+            "field": "size",
+            "value": "M3"
+          }
+        ]
+      },
+      {
+        "text": "The part is bought rather than made, which may indicate a catalog or commercial origin that engineering should confirm.",
+        "cites": [
+          {
+            "part_number": "100-004112",
+            "field": "make_buy",
+            "value": "buy"
+          }
+        ]
+      },
+      {
+        "text": "The part belongs to the Aerospace Systems business unit but has no export classification recorded.",
+        "cites": [
+          {
+            "part_number": "100-004112",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "100-004112",
+            "field": "export_class",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "text": "The part is recorded as used in zero assemblies, no controlled assemblies are listed as using it, and its lifecycle is Obsolete.",
+        "cites": [
+          {
+            "part_number": "100-004112",
+            "field": "used_in",
+            "value": "0"
+          },
+          {
+            "part_number": "100-004112",
+            "field": "lifecycle",
+            "value": "Obsolete"
+          }
+        ]
+      },
+      {
+        "text": "The recorded weight of 0.076 kg looks high for an M3 washer, so the record may contain a data error worth checking.",
+        "cites": [
+          {
+            "part_number": "100-004112",
+            "field": "weight_kg",
+            "value": "0.076"
+          },
+          {
+            "part_number": "100-004112",
+            "field": "size",
+            "value": "M3"
+          }
+        ]
+      }
+    ],
+    "questions": [
+      "Is this washer an off-the-shelf commercial or standard catalog part (e.g., ISO/DIN), and who is the supplier and what is the supplier part number?",
+      "Was the washer designed or modified specifically for any defense or aerospace article, or does it have any non-standard features, coatings, or tolerances?",
+      "Was the part ever used in any controlled assembly before it became Obsolete, and has any of it been shipped or exported?",
+      "Is the recorded weight of 0.076 kg correct for an M3 washer, or is the record in error?",
+      "Does the supplier provide its own export classification for this part?",
+      "Since the part is Obsolete and unused, could it be retired in a way that removes the need for an ongoing classification, or is a classification still needed for remaining inventory or records?"
+    ]
+  }
+}

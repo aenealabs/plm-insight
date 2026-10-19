@@ -1,0 +1,130 @@
+{
+  "input": "{\n \"finding\": \"2 parts look like the same molded part (100X125X20, PC/ABS UL94 V-0)\",\n \"parts\": [\n  {\n   \"part_number\": \"100-005622\",\n   \"description\": \"CABLE GLAND 100X125X20 PC-ABS\",\n   \"part_type\": \"Molded part\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"PC/ABS UL94 V-0\",\n   \"size\": \"100X125X20\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.750\",\n   \"make_buy\": \"buy\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"3A991\",\n   \"created\": \"2016-03-24\",\n   \"created_by\": \"K. Petrov\",\n   \"used_in\": \"3\"\n  },\n  {\n   \"part_number\": \"210-008581\",\n   \"description\": \"Gland, Cable, 100 x 125 x 20, Pc/Abs Ul94 V-0\",\n   \"part_type\": \"Molded part\",\n   \"business_unit\": \"eMobility\",\n   \"material\": \"PC/ABS UL94 V-0\",\n   \"size\": \"100X125X20\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.764\",\n   \"make_buy\": \"buy\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2022-07-12\",\n   \"created_by\": \"A. Novak\",\n   \"used_in\": \"3\"\n  }\n ]\n}",
+  "output": {
+    "verdict": "same part",
+    "keep": "100-005622",
+    "reasons": [
+      {
+        "text": "Both parts are buy molded parts with the same size, material and unit of measure, and their weights differ by only about 2%, so they describe the same cable gland.",
+        "cites": [
+          {
+            "part_number": "100-005622",
+            "field": "part_type",
+            "value": "Molded part"
+          },
+          {
+            "part_number": "210-008581",
+            "field": "part_type",
+            "value": "Molded part"
+          },
+          {
+            "part_number": "100-005622",
+            "field": "size",
+            "value": "100X125X20"
+          },
+          {
+            "part_number": "210-008581",
+            "field": "size",
+            "value": "100X125X20"
+          },
+          {
+            "part_number": "100-005622",
+            "field": "material",
+            "value": "PC/ABS UL94 V-0"
+          },
+          {
+            "part_number": "210-008581",
+            "field": "material",
+            "value": "PC/ABS UL94 V-0"
+          },
+          {
+            "part_number": "100-005622",
+            "field": "uom",
+            "value": "EA"
+          },
+          {
+            "part_number": "210-008581",
+            "field": "uom",
+            "value": "EA"
+          },
+          {
+            "part_number": "100-005622",
+            "field": "weight_kg",
+            "value": "0.750"
+          },
+          {
+            "part_number": "210-008581",
+            "field": "weight_kg",
+            "value": "0.764"
+          },
+          {
+            "part_number": "100-005622",
+            "field": "make_buy",
+            "value": "buy"
+          },
+          {
+            "part_number": "210-008581",
+            "field": "make_buy",
+            "value": "buy"
+          }
+        ]
+      },
+      {
+        "text": "Both parts are used in the same number of assemblies and are both Released, so the tie is broken by age, and 100-005622 is the older record.",
+        "cites": [
+          {
+            "part_number": "100-005622",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "210-008581",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "100-005622",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "210-008581",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "100-005622",
+            "field": "created",
+            "value": "2016-03-24"
+          },
+          {
+            "part_number": "210-008581",
+            "field": "created",
+            "value": "2022-07-12"
+          }
+        ]
+      },
+      {
+        "text": "The export classifications conflict, so the correct classification must be settled before the records are merged.",
+        "cites": [
+          {
+            "part_number": "100-005622",
+            "field": "export_class",
+            "value": "3A991"
+          },
+          {
+            "part_number": "210-008581",
+            "field": "export_class",
+            "value": "EAR99"
+          }
+        ]
+      }
+    ],
+    "before_merging": [
+      "Resolve the export classification conflict (3A991 on 100-005622 vs EAR99 on 210-008581) with trade compliance before merging.",
+      "Confirm with K. Petrov and A. Novak that the Aerospace Systems and eMobility parts are not intentionally separate variants for their business units.",
+      "Check whether the 0.750 kg vs 0.764 kg weight difference reflects a real design difference or just a measurement difference.",
+      "Plan the update of the 3 assemblies that use 210-008581 so they point to 100-005622."
+    ]
+  }
+}

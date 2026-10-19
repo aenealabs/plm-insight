@@ -1,0 +1,145 @@
+{
+  "input": "{\n \"finding\": \"2 parts look like the same molded part (235X230X110, PC/ABS UL94 V-0)\",\n \"parts\": [\n  {\n   \"part_number\": \"210-005968\",\n   \"description\": \"Terminal cover 235x230x110 pc/abs ul94 v-0\",\n   \"part_type\": \"Molded part\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"PC/ABS UL94 V-0\",\n   \"size\": \"235X230X110\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.113\",\n   \"make_buy\": \"buy\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"9A610.x\",\n   \"created\": \"2012-10-31\",\n   \"created_by\": \"J. Adeyemi\",\n   \"used_in\": \"6\"\n  },\n  {\n   \"part_number\": \"330-008533\",\n   \"description\": \"Cover, Terminal, 235 x 230 x 110, Pc/Abs Ul94 V-0\",\n   \"part_type\": \"Molded part\",\n   \"business_unit\": \"Industrial Controls\",\n   \"material\": \"PC/ABS UL94 V-0\",\n   \"size\": \"235X230X110\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.115\",\n   \"make_buy\": \"buy\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2018-10-13\",\n   \"created_by\": \"I. Moreau\",\n   \"used_in\": \"3\"\n  }\n ]\n}",
+  "output": {
+    "verdict": "needs engineering check",
+    "keep": "",
+    "reasons": [
+      {
+        "text": "The two parts match on part type, material, size, unit of measure and make/buy, and their descriptions both describe a 235x230x110 PC/ABS UL94 V-0 terminal cover.",
+        "cites": [
+          {
+            "part_number": "210-005968",
+            "field": "part_type",
+            "value": "Molded part"
+          },
+          {
+            "part_number": "330-008533",
+            "field": "part_type",
+            "value": "Molded part"
+          },
+          {
+            "part_number": "210-005968",
+            "field": "material",
+            "value": "PC/ABS UL94 V-0"
+          },
+          {
+            "part_number": "330-008533",
+            "field": "material",
+            "value": "PC/ABS UL94 V-0"
+          },
+          {
+            "part_number": "210-005968",
+            "field": "size",
+            "value": "235X230X110"
+          },
+          {
+            "part_number": "330-008533",
+            "field": "size",
+            "value": "235X230X110"
+          },
+          {
+            "part_number": "210-005968",
+            "field": "uom",
+            "value": "EA"
+          },
+          {
+            "part_number": "330-008533",
+            "field": "uom",
+            "value": "EA"
+          },
+          {
+            "part_number": "210-005968",
+            "field": "make_buy",
+            "value": "buy"
+          },
+          {
+            "part_number": "330-008533",
+            "field": "make_buy",
+            "value": "buy"
+          }
+        ]
+      },
+      {
+        "text": "Their weights are nearly identical, which is consistent with the same molded part.",
+        "cites": [
+          {
+            "part_number": "210-005968",
+            "field": "weight_kg",
+            "value": "0.113"
+          },
+          {
+            "part_number": "330-008533",
+            "field": "weight_kg",
+            "value": "0.115"
+          }
+        ]
+      },
+      {
+        "text": "The export classifications conflict, with one part controlled as 9A610.x and the other classified EAR99, which may mean the Aerospace Systems part is specially designed or controlled differently and should not be merged without review.",
+        "cites": [
+          {
+            "part_number": "210-005968",
+            "field": "export_class",
+            "value": "9A610.x"
+          },
+          {
+            "part_number": "330-008533",
+            "field": "export_class",
+            "value": "EAR99"
+          },
+          {
+            "part_number": "210-005968",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "330-008533",
+            "field": "business_unit",
+            "value": "Industrial Controls"
+          }
+        ]
+      },
+      {
+        "text": "If they are confirmed to be the same part, 210-005968 would be the preferred survivor because it is used in more assemblies, is released, and is the older record.",
+        "cites": [
+          {
+            "part_number": "210-005968",
+            "field": "used_in",
+            "value": "6"
+          },
+          {
+            "part_number": "330-008533",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "210-005968",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "330-008533",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "210-005968",
+            "field": "created",
+            "value": "2012-10-31"
+          },
+          {
+            "part_number": "330-008533",
+            "field": "created",
+            "value": "2018-10-13"
+          }
+        ]
+      }
+    ],
+    "before_merging": [
+      "Ask export compliance to resolve the 9A610.x vs EAR99 classification conflict and confirm which classification applies to a single merged part.",
+      "Have engineering (e.g. J. Adeyemi and I. Moreau or their successors) confirm the two covers are form-fit-function identical, including any aerospace-specific requirements on 210-005968.",
+      "Confirm the 0.113 kg vs 0.115 kg weight difference is measurement tolerance rather than a design difference.",
+      "Check with both business units (Aerospace Systems and Industrial Controls) that the 3 assemblies using 330-008533 can accept 210-005968 and its export classification."
+    ]
+  }
+}

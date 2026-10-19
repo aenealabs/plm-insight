@@ -1,0 +1,112 @@
+{
+  "input": "{\n \"finding\": \"100-004763 has no export classification: Aerospace Systems is an export-controlled business unit\",\n \"part\": {\n  \"part_number\": \"100-004763\",\n  \"description\": \"Cover, Enclosure, 60 x 150 x 20, Pc/Abs Ul94 V-0\",\n  \"part_type\": \"Molded part\",\n  \"business_unit\": \"Aerospace Systems\",\n  \"material\": \"PC/ABS UL94 V-0\",\n  \"size\": \"60X150X20\",\n  \"uom\": \"EA\",\n  \"weight_kg\": \"0.551\",\n  \"make_buy\": \"buy\",\n  \"lifecycle\": \"Released\",\n  \"export_class\": \"\",\n  \"created\": \"2021-06-20\",\n  \"created_by\": \"E. Duarte\",\n  \"used_in\": \"2\"\n },\n \"controlled_assemblies_using_it\": [\n  {\n   \"part_number\": \"330-008833\",\n   \"description\": \"POWER UNIT ASSY C46\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"lifecycle\": \"Released\"\n  }\n ]\n}",
+  "output": {
+    "summary": "100-004763 is a released, bought molded PC/ABS UL94 V-0 enclosure cover (60 x 150 x 20) belonging to the Aerospace Systems business unit. It has no export classification even though Aerospace Systems is an export-controlled business unit and the part is used in a released Aerospace Systems power unit assembly, so Trade Compliance needs to decide its classification.",
+    "evidence": [
+      {
+        "text": "The part is a molded PC/ABS UL94 V-0 enclosure cover measuring 60 x 150 x 20 and weighing 0.551 kg.",
+        "cites": [
+          {
+            "part_number": "100-004763",
+            "field": "description",
+            "value": "Cover, Enclosure, 60 x 150 x 20, Pc/Abs Ul94 V-0"
+          },
+          {
+            "part_number": "100-004763",
+            "field": "part_type",
+            "value": "Molded part"
+          },
+          {
+            "part_number": "100-004763",
+            "field": "material",
+            "value": "PC/ABS UL94 V-0"
+          },
+          {
+            "part_number": "100-004763",
+            "field": "size",
+            "value": "60X150X20"
+          },
+          {
+            "part_number": "100-004763",
+            "field": "weight_kg",
+            "value": "0.551"
+          }
+        ]
+      },
+      {
+        "text": "The part is a released, bought item in the Aerospace Systems business unit with an empty export classification field.",
+        "cites": [
+          {
+            "part_number": "100-004763",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "100-004763",
+            "field": "make_buy",
+            "value": "buy"
+          },
+          {
+            "part_number": "100-004763",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "100-004763",
+            "field": "export_class",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "text": "The part is recorded as used in 2 places, including the released Aerospace Systems assembly 330-008833, POWER UNIT ASSY C46.",
+        "cites": [
+          {
+            "part_number": "100-004763",
+            "field": "used_in",
+            "value": "2"
+          },
+          {
+            "part_number": "330-008833",
+            "field": "description",
+            "value": "POWER UNIT ASSY C46"
+          },
+          {
+            "part_number": "330-008833",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "330-008833",
+            "field": "lifecycle",
+            "value": "Released"
+          }
+        ]
+      },
+      {
+        "text": "The part was created on 2021-06-20 by E. Duarte, who may be able to describe its design origin.",
+        "cites": [
+          {
+            "part_number": "100-004763",
+            "field": "created",
+            "value": "2021-06-20"
+          },
+          {
+            "part_number": "100-004763",
+            "field": "created_by",
+            "value": "E. Duarte"
+          }
+        ]
+      }
+    ],
+    "questions": [
+      "Is this cover a supplier catalog/off-the-shelf part, or was it designed or modified to a company drawing specifically for the POWER UNIT ASSY C46 (330-008833)?",
+      "Does the cover's design (geometry, mounting features, material choice) derive from any defense or military program requirements or technical data?",
+      "What is the second assembly or usage that makes up the used_in count of 2, and what is its export classification and end use?",
+      "Is the same cover, or an equivalent one, used in commercial or non-aerospace products?",
+      "Does the cover perform any function beyond physical enclosure (e.g., EMI shielding, thermal management, environmental sealing) critical to the power unit's performance?",
+      "What is the end platform or end use of the POWER UNIT ASSY C46 (330-008833), and what is that assembly's export classification?",
+      "Does the supplier hold or provide any export classification for this part, and does any drawing or technical data delivered to them carry export markings?"
+    ]
+  }
+}

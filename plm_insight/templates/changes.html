@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+  <h1>Change list</h1>
+  <span class="muted">{{ rows | length | plural('change') }} from accepted decisions. PLM Insight never writes to PLM: hand this file to the PLM bulk-update process.</span>
+  {% if rows %}<a class="button contained" style="margin-left:auto" href="/changes.csv"><span class="material-symbols-outlined">download</span>Download CSV</a>{% endif %}
+</div>
+<div class="card">
+  {% if rows %}
+  <table>
+    <thead><tr><th>Issue</th><th>Object</th><th>Action</th><th>Old</th><th>New</th><th>Decided by</th></tr></thead>
+    <tbody>{% for r in rows %}<tr><td class="mono">{{ r.issue }}</td><td class="mono">{{ r.object }}</td><td>{{ r.action }}</td><td class="mono">{{ r.old }}</td><td class="mono">{{ r.new }}</td><td style="font-size:12px">{{ r.decided_by }}<div class="muted">{{ r.decided_at }}</div></td></tr>{% endfor %}</tbody>
+  </table>
+  {% else %}
+  <div class="empty"><span class="material-symbols-outlined">playlist_add_check</span><h3>No accepted fixes yet</h3><p>Accept fixes in the <a href="/issues">steward queue</a>; they appear here as change rows.</p></div>
+  {% endif %}
+</div>
+{% endblock %}

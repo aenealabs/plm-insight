@@ -1,0 +1,135 @@
+{
+  "input": "{\n \"finding\": \"3 parts look like the same sheet metal (220X55X2, ALUMINUM 6061-T6)\",\n \"parts\": [\n  {\n   \"part_number\": \"100-004396\",\n   \"description\": \"L bracket 220x55x2 aluminum 6061-t6\",\n   \"part_type\": \"Sheet metal\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"ALUMINUM 6061-T6\",\n   \"size\": \"220X55X2\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.129\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"9A610.x\",\n   \"created\": \"2018-05-15\",\n   \"created_by\": \"J. Adeyemi\",\n   \"used_in\": \"4\"\n  },\n  {\n   \"part_number\": \"330-008628\",\n   \"description\": \"L BRACKET 220X55X2 AL6061\",\n   \"part_type\": \"Sheet metal\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"ALUMINUM 6061-T6\",\n   \"size\": \"220X55X2\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.127\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"\",\n   \"created\": \"2021-05-11\",\n   \"created_by\": \"B. Osei\",\n   \"used_in\": \"3\"\n  },\n  {\n   \"part_number\": \"330-008629\",\n   \"description\": \"L BRACKET 220X55X2 AL6061\",\n   \"part_type\": \"Sheet metal\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"ALUMINUM 6061-T6\",\n   \"size\": \"220X55X2\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.126\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"3A991\",\n   \"created\": \"2022-06-16\",\n   \"created_by\": \"B. Osei\",\n   \"used_in\": \"4\"\n  }\n ]\n}",
+  "output": {
+    "verdict": "same part",
+    "keep": "100-004396",
+    "reasons": [
+      {
+        "text": "All three parts are Aerospace Systems sheet metal L brackets with the same size and material, and their weights are within a few grams of each other.",
+        "cites": [
+          {
+            "part_number": "100-004396",
+            "field": "size",
+            "value": "220X55X2"
+          },
+          {
+            "part_number": "330-008628",
+            "field": "size",
+            "value": "220X55X2"
+          },
+          {
+            "part_number": "330-008629",
+            "field": "size",
+            "value": "220X55X2"
+          },
+          {
+            "part_number": "100-004396",
+            "field": "material",
+            "value": "ALUMINUM 6061-T6"
+          },
+          {
+            "part_number": "330-008628",
+            "field": "material",
+            "value": "ALUMINUM 6061-T6"
+          },
+          {
+            "part_number": "330-008629",
+            "field": "material",
+            "value": "ALUMINUM 6061-T6"
+          },
+          {
+            "part_number": "100-004396",
+            "field": "weight_kg",
+            "value": "0.129"
+          },
+          {
+            "part_number": "330-008628",
+            "field": "weight_kg",
+            "value": "0.127"
+          },
+          {
+            "part_number": "330-008629",
+            "field": "weight_kg",
+            "value": "0.126"
+          }
+        ]
+      },
+      {
+        "text": "100-004396 ties with 330-008629 for the most assemblies, and both are Released.",
+        "cites": [
+          {
+            "part_number": "100-004396",
+            "field": "used_in",
+            "value": "4"
+          },
+          {
+            "part_number": "330-008629",
+            "field": "used_in",
+            "value": "4"
+          },
+          {
+            "part_number": "330-008628",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "100-004396",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "330-008629",
+            "field": "lifecycle",
+            "value": "Released"
+          }
+        ]
+      },
+      {
+        "text": "100-004396 is the oldest record, which breaks the tie, and it has an export classification.",
+        "cites": [
+          {
+            "part_number": "100-004396",
+            "field": "created",
+            "value": "2018-05-15"
+          },
+          {
+            "part_number": "330-008629",
+            "field": "created",
+            "value": "2022-06-16"
+          },
+          {
+            "part_number": "100-004396",
+            "field": "export_class",
+            "value": "9A610.x"
+          }
+        ]
+      },
+      {
+        "text": "The export classifications conflict: one part is 9A610.x, one is 3A991, and one is blank, so this must be resolved before merging.",
+        "cites": [
+          {
+            "part_number": "100-004396",
+            "field": "export_class",
+            "value": "9A610.x"
+          },
+          {
+            "part_number": "330-008629",
+            "field": "export_class",
+            "value": "3A991"
+          },
+          {
+            "part_number": "330-008628",
+            "field": "export_class",
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "before_merging": [
+      "Have trade compliance confirm the correct export classification for the merged part, since 100-004396 is 9A610.x, 330-008629 is 3A991, and 330-008628 has none.",
+      "Ask B. Osei why 330-008628 and 330-008629 were created as separate parts when 100-004396 already existed.",
+      "Compare the geometry of all three parts to confirm the bracket shape and features are identical, beyond the matching size and material.",
+      "Check the assemblies that use 330-008628 and 330-008629 before redirecting them to 100-004396."
+    ]
+  }
+}

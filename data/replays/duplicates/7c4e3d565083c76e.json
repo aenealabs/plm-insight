@@ -1,0 +1,135 @@
+{
+  "input": "{\n \"finding\": \"3 parts look like the same conductor (540X25X10, COPPER C110)\",\n \"parts\": [\n  {\n   \"part_number\": \"210-004114\",\n   \"description\": \"Busbar 540x25x10 copper c110\",\n   \"part_type\": \"Conductor\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"COPPER C110\",\n   \"size\": \"540X25X10\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"2.402\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"9A991\",\n   \"created\": \"2021-12-29\",\n   \"created_by\": \"B. Osei\",\n   \"used_in\": \"4\"\n  },\n  {\n   \"part_number\": \"210-008607\",\n   \"description\": \"BUSBAR 540X25X10 CU C110\",\n   \"part_type\": \"Conductor\",\n   \"business_unit\": \"eMobility\",\n   \"material\": \"COPPER C110\",\n   \"size\": \"540X25X10\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"2.385\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2022-09-08\",\n   \"created_by\": \"F. Haddad\",\n   \"used_in\": \"4\"\n  },\n  {\n   \"part_number\": \"450-008606\",\n   \"description\": \"Busbar, 540 x 25 x 10, Copper C110\",\n   \"part_type\": \"Conductor\",\n   \"business_unit\": \"Industrial Controls\",\n   \"material\": \"COPPER C110\",\n   \"size\": \"540X25X10\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"2.353\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2026-09-21\",\n   \"created_by\": \"G. Brennan\",\n   \"used_in\": \"2\"\n  }\n ]\n}",
+  "output": {
+    "verdict": "same part",
+    "keep": "210-004114",
+    "reasons": [
+      {
+        "text": "All three parts share the same part type, material, size, unit of measure and make/buy setting, and all are Released.",
+        "cites": [
+          {
+            "part_number": "210-004114",
+            "field": "material",
+            "value": "COPPER C110"
+          },
+          {
+            "part_number": "210-008607",
+            "field": "material",
+            "value": "COPPER C110"
+          },
+          {
+            "part_number": "450-008606",
+            "field": "material",
+            "value": "COPPER C110"
+          },
+          {
+            "part_number": "210-004114",
+            "field": "size",
+            "value": "540X25X10"
+          },
+          {
+            "part_number": "210-008607",
+            "field": "size",
+            "value": "540X25X10"
+          },
+          {
+            "part_number": "450-008606",
+            "field": "size",
+            "value": "540X25X10"
+          },
+          {
+            "part_number": "210-004114",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "210-008607",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "450-008606",
+            "field": "lifecycle",
+            "value": "Released"
+          }
+        ]
+      },
+      {
+        "text": "The weights are within about 2% of each other, which is consistent with the same copper busbar.",
+        "cites": [
+          {
+            "part_number": "210-004114",
+            "field": "weight_kg",
+            "value": "2.402"
+          },
+          {
+            "part_number": "210-008607",
+            "field": "weight_kg",
+            "value": "2.385"
+          },
+          {
+            "part_number": "450-008606",
+            "field": "weight_kg",
+            "value": "2.353"
+          }
+        ]
+      },
+      {
+        "text": "210-004114 and 210-008607 tie on usage at 4 assemblies each, so 210-004114 is preferred as the older record.",
+        "cites": [
+          {
+            "part_number": "210-004114",
+            "field": "used_in",
+            "value": "4"
+          },
+          {
+            "part_number": "210-008607",
+            "field": "used_in",
+            "value": "4"
+          },
+          {
+            "part_number": "450-008606",
+            "field": "used_in",
+            "value": "2"
+          },
+          {
+            "part_number": "210-004114",
+            "field": "created",
+            "value": "2021-12-29"
+          },
+          {
+            "part_number": "210-008607",
+            "field": "created",
+            "value": "2022-09-08"
+          }
+        ]
+      },
+      {
+        "text": "The export classifications conflict: the kept part is 9A991, while the other two are EAR99, so the correct classification must be settled before merging.",
+        "cites": [
+          {
+            "part_number": "210-004114",
+            "field": "export_class",
+            "value": "9A991"
+          },
+          {
+            "part_number": "210-008607",
+            "field": "export_class",
+            "value": "EAR99"
+          },
+          {
+            "part_number": "450-008606",
+            "field": "export_class",
+            "value": "EAR99"
+          },
+          {
+            "part_number": "210-004114",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          }
+        ]
+      }
+    ],
+    "before_merging": []
+  }
+}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card"><div class="empty">
+  <span class="material-symbols-outlined">lock</span>
+  <h3>Restricted</h3>
+  <p>Only data stewards can open {{ what }}. This attempt was recorded in the audit log.</p>
+  <p><a href="/">Back to the scorecard</a></p>
+</div></div>
+{% endblock %}

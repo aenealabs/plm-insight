@@ -1,0 +1,124 @@
+{
+  "input": "{\n \"finding\": \"2 parts look like the same sheet metal (380X50X1.5, STEEL CRS 1008)\",\n \"parts\": [\n  {\n   \"part_number\": \"210-005162\",\n   \"description\": \"L BRACKET 380X50X1.5 CRS\",\n   \"part_type\": \"Sheet metal\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"STEEL CRS 1008\",\n   \"size\": \"380X50X1.5\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"1.047\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"9A991\",\n   \"created\": \"2014-07-26\",\n   \"created_by\": \"G. Brennan\",\n   \"used_in\": \"3\"\n  },\n  {\n   \"part_number\": \"330-008653\",\n   \"description\": \"L bracket 380x50x1.5 steel crs 1008\",\n   \"part_type\": \"Sheet metal\",\n   \"business_unit\": \"Electrical Products\",\n   \"material\": \"STEEL CRS 1008\",\n   \"size\": \"380X50X1.5\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"1.042\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2021-05-28\",\n   \"created_by\": \"L. Fischer\",\n   \"used_in\": \"1\"\n  }\n ]\n}",
+  "output": {
+    "verdict": "same part",
+    "keep": "210-005162",
+    "reasons": [
+      {
+        "text": "Both parts are released, made-in-house sheet metal L brackets with the same material and size, and their weights differ by only 0.005 kg.",
+        "cites": [
+          {
+            "part_number": "210-005162",
+            "field": "material",
+            "value": "STEEL CRS 1008"
+          },
+          {
+            "part_number": "330-008653",
+            "field": "material",
+            "value": "STEEL CRS 1008"
+          },
+          {
+            "part_number": "210-005162",
+            "field": "size",
+            "value": "380X50X1.5"
+          },
+          {
+            "part_number": "330-008653",
+            "field": "size",
+            "value": "380X50X1.5"
+          },
+          {
+            "part_number": "210-005162",
+            "field": "weight_kg",
+            "value": "1.047"
+          },
+          {
+            "part_number": "330-008653",
+            "field": "weight_kg",
+            "value": "1.042"
+          },
+          {
+            "part_number": "210-005162",
+            "field": "make_buy",
+            "value": "make"
+          },
+          {
+            "part_number": "330-008653",
+            "field": "make_buy",
+            "value": "make"
+          },
+          {
+            "part_number": "210-005162",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "330-008653",
+            "field": "lifecycle",
+            "value": "Released"
+          }
+        ]
+      },
+      {
+        "text": "210-005162 should be kept because it is used in more assemblies and is the older record.",
+        "cites": [
+          {
+            "part_number": "210-005162",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "330-008653",
+            "field": "used_in",
+            "value": "1"
+          },
+          {
+            "part_number": "210-005162",
+            "field": "created",
+            "value": "2014-07-26"
+          },
+          {
+            "part_number": "330-008653",
+            "field": "created",
+            "value": "2021-05-28"
+          }
+        ]
+      },
+      {
+        "text": "The export classifications conflict, which must be resolved before merging even though the geometry matches.",
+        "cites": [
+          {
+            "part_number": "210-005162",
+            "field": "export_class",
+            "value": "9A991"
+          },
+          {
+            "part_number": "330-008653",
+            "field": "export_class",
+            "value": "EAR99"
+          }
+        ]
+      },
+      {
+        "text": "The parts belong to different business units, so the merge affects both Aerospace Systems and Electrical Products.",
+        "cites": [
+          {
+            "part_number": "210-005162",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "330-008653",
+            "field": "business_unit",
+            "value": "Electrical Products"
+          }
+        ]
+      }
+    ],
+    "before_merging": [
+      "Have export compliance confirm the correct classification for the bracket, since 210-005162 is 9A991 and 330-008653 is EAR99.",
+      "Confirm with G. Brennan and L. Fischer that the two brackets share the same geometry (bend, holes, tolerances) beyond the matching size and material.",
+      "Notify the owners of the assembly using 330-008653 in Electrical Products before replacing it with 210-005162."
+    ]
+  }
+}

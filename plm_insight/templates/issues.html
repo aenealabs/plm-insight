@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+  <h1>{{ 'Trade Compliance review' if queue == 'compliance' else 'Steward queue' }}</h1>
+  <span class="muted">{{ total | plural('finding') }}{% if queue == 'compliance' %} · export classification is decided only by Trade Compliance; the tool never proposes one{% endif %}</span>
+</div>
+<form method="get" action="/issues" class="filters card card-body">
+  <input type="hidden" name="queue" value="{{ queue }}">
+  {% if queue != 'compliance' %}
+  <label>Rule <select name="rule"><option value="">All</option>{% for r, name in rule_names.items() if r != 'DQ-EXP' %}<option value="{{ r }}" {{ 'selected' if params.rule == r }}>{{ name }}</option>{% endfor %}</select></label>
+  {% endif %}
+  <label>Business unit <select name="unit"><option value="">All</option>{% for u in units %}<option {{ 'selected' if params.unit == u }}>{{ u }}</option>{% endfor %}</select></label>
+  <label>Status <select name="status">{% for s, label in [('open', 'Open'), ('accepted', 'Accepted'), ('rejected', 'Rejected'), ('', 'All')] %}<option value="{{ s }}" {{ 'selected' if params.status == s }}>{{ label }}</option>{% endfor %}</select></label>
+  <button class="button text" type="submit">Filter</button>
+</form>
+<div class="card">
+  {% if issues %}
+  <table class="issues">
+    <thead><tr><th>Issue</th><th>Finding</th><th>Unit</th><th>Severity</th><th>Status</th></tr></thead>
+    <tbody>
+    {% for i in issues %}
+      <tr>
+        <td class="mono"><a href="/issues/{{ i.id }}">{{ i.key }}</a></td>
+        <td style="white-space:normal"><a class="primary" href="/issues/{{ i.id }}">{{ i.title }}</a><div class="muted" style="font-size:12px">{{ rule_names[i.rule] }}{% if i.note %} · {{ i.note }}{% endif %}</div></td>
+        <td>{{ i.business_unit }}</td>
+        <td><span class="chip sev-{{ i.severity }}">{{ i.severity }}</span></td>
+        <td><span class="chip {{ 'trace-traced' if i.status == 'accepted' else 'outlined' }}">{{ i.status }}</span></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if total > page_size %}
+  <div class="card-body pager">
+    {% if page > 1 %}<a class="button text" href="/issues?{{ query_string(page=page - 1) }}">Previous</a>{% endif %}
+    <span class="muted">{{ (page - 1) * page_size + 1 }}-{{ [page * page_size, total] | min }} of {{ total }}</span>
+    {% if page * page_size < total %}<a class="button text" href="/issues?{{ query_string(page=page + 1) }}">Next</a>{% endif %}
+  </div>
+  {% endif %}
+  {% else %}
+  <div class="empty"><span class="material-symbols-outlined">task_alt</span><h3>Nothing here</h3><p>No findings match these filters.</p></div>
+  {% endif %}
+</div>
+{% endblock %}

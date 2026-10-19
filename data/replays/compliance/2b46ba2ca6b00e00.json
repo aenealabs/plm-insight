@@ -1,0 +1,127 @@
+{
+  "input": "{\n \"finding\": \"100-004383 has no export classification: Aerospace Systems is an export-controlled business unit\",\n \"part\": {\n  \"part_number\": \"100-004383\",\n  \"description\": \"Support plate 320x190x4 steel crs 1008\",\n  \"part_type\": \"Sheet metal\",\n  \"business_unit\": \"Aerospace Systems\",\n  \"material\": \"STEEL CRS 1008\",\n  \"size\": \"320X190X4\",\n  \"uom\": \"EA\",\n  \"weight_kg\": \"0.831\",\n  \"make_buy\": \"make\",\n  \"lifecycle\": \"Released\",\n  \"export_class\": \"\",\n  \"created\": \"2022-12-09\",\n  \"created_by\": \"G. Brennan\",\n  \"used_in\": \"3\"\n },\n \"controlled_assemblies_using_it\": [\n  {\n   \"part_number\": \"100-008762\",\n   \"description\": \"POWER UNIT ASSY B84\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"lifecycle\": \"Released\"\n  },\n  {\n   \"part_number\": \"450-009047\",\n   \"description\": \"BREAKER ASSY A94\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"lifecycle\": \"Released\"\n  }\n ]\n}",
+  "output": {
+    "summary": "100-004383 is a released, made-in-house sheet metal support plate (320x190x4, STEEL CRS 1008) in the Aerospace Systems business unit, and it has no export classification recorded. Because Aerospace Systems is an export-controlled business unit and the part is used in released Aerospace Systems assemblies, Trade Compliance needs to make a classification decision.",
+    "evidence": [
+      {
+        "text": "The part is a made-in-house sheet metal support plate of cold-rolled 1008 steel, 320x190x4 in size, weighing 0.831 kg each.",
+        "cites": [
+          {
+            "part_number": "100-004383",
+            "field": "description",
+            "value": "Support plate 320x190x4 steel crs 1008"
+          },
+          {
+            "part_number": "100-004383",
+            "field": "part_type",
+            "value": "Sheet metal"
+          },
+          {
+            "part_number": "100-004383",
+            "field": "material",
+            "value": "STEEL CRS 1008"
+          },
+          {
+            "part_number": "100-004383",
+            "field": "size",
+            "value": "320X190X4"
+          },
+          {
+            "part_number": "100-004383",
+            "field": "weight_kg",
+            "value": "0.831"
+          },
+          {
+            "part_number": "100-004383",
+            "field": "make_buy",
+            "value": "make"
+          }
+        ]
+      },
+      {
+        "text": "The part is released in the Aerospace Systems business unit with an empty export classification field.",
+        "cites": [
+          {
+            "part_number": "100-004383",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "100-004383",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "100-004383",
+            "field": "export_class",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "text": "The part is recorded as used in 3 assemblies, two of which are released Aerospace Systems assemblies: a power unit assembly and a breaker assembly.",
+        "cites": [
+          {
+            "part_number": "100-004383",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "100-008762",
+            "field": "description",
+            "value": "POWER UNIT ASSY B84"
+          },
+          {
+            "part_number": "100-008762",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "100-008762",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "450-009047",
+            "field": "description",
+            "value": "BREAKER ASSY A94"
+          },
+          {
+            "part_number": "450-009047",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "450-009047",
+            "field": "lifecycle",
+            "value": "Released"
+          }
+        ]
+      },
+      {
+        "text": "The recorded weight of 0.831 kg is well below what a solid 320x190x4 steel plate would weigh, suggesting cutouts or features that engineering should describe.",
+        "cites": [
+          {
+            "part_number": "100-004383",
+            "field": "weight_kg",
+            "value": "0.831"
+          },
+          {
+            "part_number": "100-004383",
+            "field": "size",
+            "value": "320X190X4"
+          }
+        ]
+      }
+    ],
+    "questions": [
+      "Was this support plate designed specifically for the B84 power unit and/or A94 breaker assembly, or is it a general-purpose or catalog-equivalent bracket design?",
+      "What is the design origin of the part (in-house, customer-furnished drawing, or derived from a government/defense program specification)?",
+      "Does the plate have features (hole patterns, cutouts, form factors, tolerances) that are unique to the end item, or would it function in other non-aerospace equipment?",
+      "What end platforms or programs do the POWER UNIT ASSY B84 and BREAKER ASSY A94 support, and what are their export classifications?",
+      "What is the third assembly this part is used in, and what is its business unit and classification status?",
+      "Does the 0.831 kg weight reflect cutouts or lightening features, and if so, what drove that design?",
+      "Is any customer or program data (drawings, specs) controlling the design, and does the drawing carry any export or distribution markings?"
+    ]
+  }
+}

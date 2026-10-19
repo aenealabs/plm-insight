@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header"><h1 class="mono">{{ number }}</h1>{% if part %}<span class="muted">{{ part.description }}</span>{% endif %}</div>
+{% if not part %}
+<div class="banner warning"><span class="material-symbols-outlined">help</span><div>{{ number }} is not in the current export.{% if used_in %} It is still referenced by {{ used_in | length }} BOM line{{ '' if used_in | length == 1 else 's' }}.{% endif %}</div></div>
+{% endif %}
+<div class="grid-2">
+  <div>
+    {% if part %}
+    <div class="card"><div class="card-header"><h3>Attributes</h3></div>
+      <div class="card-body"><dl class="facts-list">
+        {% for f, label in [('part_type', 'Type'), ('business_unit', 'Business unit'), ('material', 'Material'), ('size', 'Size'), ('uom', 'UoM'), ('weight_kg', 'Weight (kg)'), ('make_buy', 'Make/buy'), ('lifecycle', 'Lifecycle'), ('export_class', 'Export class'), ('superseded_by', 'Superseded by'), ('created', 'Created'), ('created_by', 'Created by')] %}
+        <dt>{{ label }}</dt><dd>{% if part[f] %}{% if f == 'superseded_by' %}<a class="mono" href="/parts/{{ part[f] }}">{{ part[f] }}</a>{% else %}{{ part[f] }}{% endif %}{% else %}<span class="muted">empty</span>{% endif %}</dd>
+        {% endfor %}
+      </dl></div></div>
+    {% endif %}
+    {% if children %}
+    <div class="card"><div class="card-header"><h3>BOM</h3><span class="muted" style="margin-left:auto">{{ children | length }} lines</span></div>
+      <table><thead><tr><th>Find</th><th>Child</th><th class="num">Qty</th><th>UoM</th></tr></thead>
+      <tbody>{% for b in children %}<tr><td>{{ b.find_number }}</td><td><a class="mono" href="/parts/{{ b.child }}">{{ b.child }}</a></td><td class="num">{{ b.quantity }}</td><td>{{ b.uom }}</td></tr>{% endfor %}</tbody></table></div>
+    {% endif %}
+  </div>
+  <div>
+    <div class="card"><div class="card-header"><h3>Findings</h3></div>
+      {% if issues %}<ul class="list">{% for i in issues %}<li class="list-item"><div class="text"><a class="primary" href="/issues/{{ i.id }}">{{ i.title }}</a><div class="secondary"><span class="mono">{{ i.key }}</span> · {{ rule_names[i.rule] }} · {{ i.status }}</div></div></li>{% endfor %}</ul>
+      {% else %}<div class="card-body muted">No findings.</div>{% endif %}
+    </div>
+    <div class="card"><div class="card-header"><h3>Used in</h3><span class="muted" style="margin-left:auto">{{ used_in | length }}</span></div>
+      {% if used_in %}<table><tbody>{% for b in used_in %}<tr><td><a class="mono" href="/parts/{{ b.parent }}">{{ b.parent }}</a></td><td>find {{ b.find_number }}</td><td class="num">{{ b.quantity }} {{ b.uom }}</td></tr>{% endfor %}</tbody></table>
+      {% else %}<div class="card-body muted">Not used in any assembly.</div>{% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

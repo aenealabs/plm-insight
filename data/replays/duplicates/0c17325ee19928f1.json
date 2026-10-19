@@ -1,0 +1,110 @@
+{
+  "input": "{\n \"finding\": \"2 parts look like the same conductor (310X20X2, COPPER C110)\",\n \"parts\": [\n  {\n   \"part_number\": \"100-008565\",\n   \"description\": \"GROUND STRAP 310X20X2 CU C110\",\n   \"part_type\": \"Conductor\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"COPPER C110\",\n   \"size\": \"310X20X2\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"2.226\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"9A991\",\n   \"created\": \"2017-11-05\",\n   \"created_by\": \"D. Mehta\",\n   \"used_in\": \"4\"\n  },\n  {\n   \"part_number\": \"330-007522\",\n   \"description\": \"Strap, Ground, 310 x 20 x 2, Copper C110\",\n   \"part_type\": \"Conductor\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"COPPER C110\",\n   \"size\": \"310X20X2\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"2.183\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"9A610.x\",\n   \"created\": \"2016-10-02\",\n   \"created_by\": \"C. Lindqvist\",\n   \"used_in\": \"3\"\n  }\n ]\n}",
+  "output": {
+    "verdict": "needs engineering check",
+    "keep": "",
+    "reasons": [
+      {
+        "text": "Both parts describe the same copper ground strap: the same part type, material, size, unit of measure, make/buy and business unit, with weights about 2% apart.",
+        "cites": [
+          {
+            "part_number": "100-008565",
+            "field": "material",
+            "value": "COPPER C110"
+          },
+          {
+            "part_number": "330-007522",
+            "field": "material",
+            "value": "COPPER C110"
+          },
+          {
+            "part_number": "100-008565",
+            "field": "size",
+            "value": "310X20X2"
+          },
+          {
+            "part_number": "330-007522",
+            "field": "size",
+            "value": "310X20X2"
+          },
+          {
+            "part_number": "100-008565",
+            "field": "weight_kg",
+            "value": "2.226"
+          },
+          {
+            "part_number": "330-007522",
+            "field": "weight_kg",
+            "value": "2.183"
+          },
+          {
+            "part_number": "100-008565",
+            "field": "part_type",
+            "value": "Conductor"
+          },
+          {
+            "part_number": "330-007522",
+            "field": "part_type",
+            "value": "Conductor"
+          }
+        ]
+      },
+      {
+        "text": "Their export classifications conflict: one is 9A991 and the other is 9A610.x, a more tightly controlled military-related classification, so a merge could misclassify the surviving part.",
+        "cites": [
+          {
+            "part_number": "100-008565",
+            "field": "export_class",
+            "value": "9A991"
+          },
+          {
+            "part_number": "330-007522",
+            "field": "export_class",
+            "value": "9A610.x"
+          }
+        ]
+      },
+      {
+        "text": "If the parts are confirmed to be the same, 100-008565 would normally be kept because it is used in more assemblies, even though 330-007522 is older and both are released.",
+        "cites": [
+          {
+            "part_number": "100-008565",
+            "field": "used_in",
+            "value": "4"
+          },
+          {
+            "part_number": "330-007522",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "100-008565",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "330-007522",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "100-008565",
+            "field": "created",
+            "value": "2017-11-05"
+          },
+          {
+            "part_number": "330-007522",
+            "field": "created",
+            "value": "2016-10-02"
+          }
+        ]
+      }
+    ],
+    "before_merging": [
+      "Have export compliance decide which classification applies to this strap (9A991 vs 9A610.x) and whether 330-007522 was classified 9A610.x for a specific military program.",
+      "Ask D. Mehta and C. Lindqvist whether the two straps are physically and functionally identical.",
+      "Check the recorded weights: a 310 x 20 x 2 mm copper strap should weigh roughly 0.11 kg, so both values (about 2.2 kg) look wrong and should be corrected.",
+      "Review the 4 assemblies using 100-008565 and the 3 using 330-007522 to make sure replacing one with the other does not change the export status of any assembly."
+    ]
+  }
+}

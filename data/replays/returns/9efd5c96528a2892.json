@@ -1,0 +1,274 @@
+{
+  "input": "ECO-26-00972 | Technical Review | Electrical Products | Design change | Drawing for 330-005584 is still at the old revision; attach the updated drawing.\nECO-26-01019 | Technical Review | Industrial Controls | Design change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01022 | Technical Review | Electrical Products | Document change | Markup attached but the released drawing is not updated.\nECO-26-01028 | Technical Review | Industrial Controls | Part obsolescence | Affected parts list is missing the fasteners at find 10; please add them.\nECO-26-01040 | Technical Review | eMobility | Design change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01033 | Change Board | Aerospace Systems | Document change | Add scrap and rework cost for existing stock of 210-008709.\nECO-26-00967 | Change Board | Aerospace Systems | Document change | Affected parts list is missing the fasteners at find 60; please add them.\nECO-26-01037 | Technical Review | Electrical Products | Design change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01035 | Technical Review | Aerospace Systems | Document change | Export review missing for the new bracket before release.\nECO-26-01026 | Change Board | eMobility | Document change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01050 | Technical Review | eMobility | Document change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01048 | Technical Review | Electrical Products | Document change | Please list every affected part, not just the drawing.\nECO-26-01041 | Change Board | Electrical Products | Supplier change | Change type should be supplier change, not design change.\nECO-26-01056 | Technical Review | Electrical Products | Design change | New part 210-004633 has no export classification; route to Trade Compliance first.\nECO-26-01054 | Technical Review | Aerospace Systems | Part obsolescence | New part 100-008716 has no export classification; route to Trade Compliance first.\nECO-26-01065 | Technical Review | Industrial Controls | Document change | Affected items incomplete: 450-004326 is changed but not listed.\nECO-26-01063 | Technical Review | Electrical Products | Design change | Please list every affected part, not just the drawing.\nECO-26-01070 | Technical Review | Aerospace Systems | Supplier change | This is a document-only change; resubmit as a document change.\nECO-26-01062 | Technical Review | Electrical Products | Design change | Drawing for 100-008767 is still at the old revision; attach the updated drawing.\nECO-26-01067 | Technical Review | Electrical Products | Design change | This is a document-only change; resubmit as a document change.\nECO-26-01050 | Technical Review | eMobility | Document change | New part 100-004317 has no export classification; route to Trade Compliance first.\nECO-26-01073 | Technical Review | eMobility | Document change | Please list every affected part, not just the drawing.\nECO-26-01075 | Technical Review | Electrical Products | Design change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01078 | Technical Review | Electrical Products | Design change | Affected parts list is missing the fasteners at find 60; please add them.\nECO-26-01069 | Change Board | Aerospace Systems | Part obsolescence | Drawing for 100-005017 is still at the old revision; attach the updated drawing.\nECO-26-01079 | Technical Review | Industrial Controls | Design change | New part 330-005174 has no export classification; route to Trade Compliance first.\nECO-26-01077 | Technical Review | Industrial Controls | Design change | Where-used not attached, so we cannot see the impact on 100-008967.\nECO-26-01083 | Technical Review | Aerospace Systems | Part obsolescence | Affected items incomplete: 100-008516 is changed but not listed.\nECO-26-01089 | Technical Review | Electrical Products | Supplier change | Drawing for 450-007464 is still at the old revision; attach the updated drawing.\nECO-26-01077 | Technical Review | Industrial Controls | Design change | Missing cost impact; board will not review without it.\nECO-26-01078 | Change Board | Electrical Products | Design change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01098 | Technical Review | Aerospace Systems | Design change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01103 | Technical Review | Aerospace Systems | Supplier change | Add scrap and rework cost for existing stock of 450-008351.\nECO-26-01003 | Change Board | Aerospace Systems | Design change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01107 | Change Board | eMobility | Design change | Affected items incomplete: 450-008703 is changed but not listed.\nECO-26-01113 | Technical Review | eMobility | Supplier change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01120 | Technical Review | Electrical Products | Design change | Export review missing for the new bracket before release.\nECO-26-01133 | Technical Review | Industrial Controls | Part obsolescence | Please list every affected part, not just the drawing.\nECO-26-01098 | Technical Review | Aerospace Systems | Design change | This is a document-only change; resubmit as a document change.\nECO-26-01136 | Change Board | Electrical Products | Document change | Export review missing for the new bracket before release.\nECO-26-01143 | Technical Review | Aerospace Systems | Document change | Effectivity date conflicts with the SAP cutover; pick a date after it.\nECO-26-01145 | Technical Review | Industrial Controls | Design change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01146 | Technical Review | eMobility | Design change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01155 | Technical Review | Electrical Products | Part obsolescence | Effectivity by serial number is missing for the field units.\nECO-26-01137 | Technical Review | eMobility | Part obsolescence | Add scrap and rework cost for existing stock of 450-004564.\nECO-26-01152 | Technical Review | Electrical Products | Design change | Where-used not attached, so we cannot see the impact on 100-008762.\nECO-26-01149 | Technical Review | Aerospace Systems | Supplier change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01151 | Technical Review | eMobility | Supplier change | Affected parts list is missing the fasteners at find 20; please add them.\nECO-26-01160 | Technical Review | Electrical Products | Part obsolescence | Effectivity by serial number is missing for the field units.\nECO-26-01111 | Change Board | Aerospace Systems | Document change | Affected parts list is missing the fasteners at find 30; please add them.\nECO-26-01098 | Technical Review | Aerospace Systems | Design change | Affected items incomplete: 330-008470 is changed but not listed.\nECO-26-01144 | Change Board | Electrical Products | Document change | Drawing for 210-004450 is still at the old revision; attach the updated drawing.\nECO-26-01093 | Change Board | Aerospace Systems | Design change | Add scrap and rework cost for existing stock of 330-005449.\nECO-26-01156 | Change Board | Industrial Controls | Document change | Affected parts list is missing the fasteners at find 10; please add them.\nECO-26-01162 | Change Board | Industrial Controls | Document change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01182 | Technical Review | Electrical Products | Design change | Please list every affected part, not just the drawing.\nECO-26-01177 | Technical Review | Electrical Products | Supplier change | Where-used not attached, so we cannot see the impact on 100-008119.\nECO-26-01172 | Technical Review | Aerospace Systems | Document change | Cost impact section is blank.\nECO-26-01184 | Technical Review | Industrial Controls | Part obsolescence | Please list every affected part, not just the drawing.\nECO-26-01148 | Change Board | Aerospace Systems | Document change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01166 | Technical Review | Electrical Products | Part obsolescence | Markup attached but the released drawing is not updated.\nECO-26-01190 | Technical Review | eMobility | Design change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01152 | Change Board | Electrical Products | Design change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01191 | Technical Review | eMobility | Part obsolescence | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01198 | Technical Review | Aerospace Systems | Document change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01194 | Technical Review | Aerospace Systems | Document change | Drawing for 100-005254 is still at the old revision; attach the updated drawing.\nECO-26-01186 | Technical Review | Aerospace Systems | Design change | Affected parts list is missing the fasteners at find 30; please add them.\nECO-26-01202 | Technical Review | Electrical Products | Design change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01190 | Change Board | eMobility | Design change | Cost impact section is blank.\nECO-26-01212 | Technical Review | Electrical Products | Design change | New part 210-006942 has no export classification; route to Trade Compliance first.\nECO-26-01181 | Change Board | Electrical Products | Part obsolescence | Affected items incomplete: 330-005276 is changed but not listed.\nECO-26-01218 | Technical Review | Industrial Controls | Supplier change | Markup attached but the released drawing is not updated.\nECO-26-01215 | Technical Review | Electrical Products | Part obsolescence | Missing cost impact; board will not review without it.\nECO-26-01222 | Technical Review | Electrical Products | Design change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01152 | Change Board | Electrical Products | Design change | Where-used not attached, so we cannot see the impact on 100-008150.\nECO-26-01194 | Technical Review | Aerospace Systems | Document change | Cost impact section is blank.\nECO-26-01232 | Technical Review | Electrical Products | Part obsolescence | Affected items incomplete: 210-005952 is changed but not listed.\nECO-26-01234 | Technical Review | eMobility | Design change | Change type should be supplier change, not design change.\nECO-26-01182 | Change Board | Electrical Products | Design change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01239 | Technical Review | eMobility | Design change | Effectivity date is before supplier stock runs out; align with purchasing.\nECO-26-01240 | Technical Review | Electrical Products | Document change | Change type should be supplier change, not design change.\nECO-26-01229 | Change Board | Electrical Products | Design change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01257 | Technical Review | Industrial Controls | Design change | Add scrap and rework cost for existing stock of 210-006194.\nECO-26-01227 | Change Board | Aerospace Systems | Document change | Please list every affected part, not just the drawing.\nECO-26-01182 | Technical Review | Electrical Products | Design change | Please list every affected part, not just the drawing.\nECO-26-01115 | Technical Review | Aerospace Systems | Supplier change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01247 | Technical Review | Electrical Products | Supplier change | Please list every affected part, not just the drawing.\nECO-26-01253 | Technical Review | Aerospace Systems | Design change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01264 | Technical Review | eMobility | Document change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01250 | Change Board | Electrical Products | Supplier change | Effectivity date conflicts with the SAP cutover; pick a date after it.\nECO-26-01268 | Technical Review | Industrial Controls | Part obsolescence | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01256 | Technical Review | Industrial Controls | Design change | Cost impact section is blank.\nECO-26-01270 | Technical Review | eMobility | Design change | Markup attached but the released drawing is not updated.\nECO-26-01267 | Technical Review | Electrical Products | Design change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01115 | Technical Review | Aerospace Systems | Supplier change | Effectivity by serial number is missing for the field units.\nECO-26-01259 | Change Board | eMobility | Design change | Affected parts list is missing the fasteners at find 40; please add them.\nECO-26-01273 | Change Board | eMobility | Document change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01281 | Technical Review | Electrical Products | Design change | Add scrap and rework cost for existing stock of 450-004457.\nECO-26-01234 | Change Board | eMobility | Design change | Drawing for 210-005135 is still at the old revision; attach the updated drawing.\nECO-26-01287 | Technical Review | eMobility | Document change | Drawing for 100-005676 is still at the old revision; attach the updated drawing.\nECO-26-01266 | Change Board | Aerospace Systems | Design change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01277 | Change Board | eMobility | Design change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01272 | Technical Review | eMobility | Document change | Effectivity date is before supplier stock runs out; align with purchasing.\nECO-26-01290 | Technical Review | eMobility | Design change | Cost impact section is blank.\nECO-26-01286 | Technical Review | Industrial Controls | Document change | Affected parts list is missing the fasteners at find 30; please add them.\nECO-26-01298 | Technical Review | Electrical Products | Design change | Export review missing for the new bracket before release.\nECO-26-01115 | Technical Review | Aerospace Systems | Supplier change | Affected items incomplete: 330-004585 is changed but not listed.\nECO-26-01288 | Technical Review | eMobility | Document change | Effectivity date conflicts with the SAP cutover; pick a date after it.\nECO-26-01306 | Technical Review | eMobility | Document change | Cost impact section is blank.\nECO-26-01311 | Technical Review | eMobility | Document change | Markup attached but the released drawing is not updated.\nECO-26-01317 | Technical Review | Electrical Products | Part obsolescence | Effectivity date is before supplier stock runs out; align with purchasing.\nECO-26-01311 | Technical Review | eMobility | Document change | Effectivity date conflicts with the SAP cutover; pick a date after it.\nECO-26-01329 | Technical Review | Electrical Products | Design change | Effectivity by serial number is missing for the field units.\nECO-26-01294 | Change Board | Aerospace Systems | Part obsolescence | Affected items incomplete: 450-007111 is changed but not listed.\nECO-26-01323 | Technical Review | Electrical Products | Part obsolescence | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01298 | Change Board | Electrical Products | Design change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01331 | Technical Review | Aerospace Systems | Design change | Add scrap and rework cost for existing stock of 210-006208.\nECO-26-01337 | Technical Review | Electrical Products | Document change | Where-used not attached, so we cannot see the impact on 100-008002.\nECO-26-01323 | Technical Review | Electrical Products | Part obsolescence | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01348 | Technical Review | Electrical Products | Document change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01313 | Change Board | Aerospace Systems | Supplier change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01359 | Technical Review | Industrial Controls | Document change | Effectivity by serial number is missing for the field units.\nECO-26-01340 | Change Board | eMobility | Supplier change | Add scrap and rework cost for existing stock of 450-008700.\nECO-26-01341 | Change Board | Industrial Controls | Design change | Affected parts list is missing the fasteners at find 40; please add them.\nECO-26-01352 | Technical Review | Aerospace Systems | Supplier change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01339 | Change Board | Electrical Products | Design change | Affected items incomplete: 330-007850 is changed but not listed.\nECO-26-01345 | Change Board | Electrical Products | Part obsolescence | Affected parts list is missing the fasteners at find 60; please add them.\nECO-26-01354 | Technical Review | Industrial Controls | Design change | Cost impact section is blank.\nECO-26-01362 | Technical Review | Industrial Controls | Document change | Markup attached but the released drawing is not updated.\nECO-26-01367 | Technical Review | Electrical Products | Design change | Add scrap and rework cost for existing stock of 100-004310.\nECO-26-01323 | Change Board | Electrical Products | Part obsolescence | Affected items incomplete: 210-005032 is changed but not listed.\nECO-26-01376 | Technical Review | Electrical Products | Document change | Affected parts list is missing the fasteners at find 10; please add them.\nECO-26-01337 | Change Board | Electrical Products | Document change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01387 | Technical Review | Industrial Controls | Document change | Effectivity date is before supplier stock runs out; align with purchasing.\nECO-26-01377 | Change Board | Industrial Controls | Design change | Affected parts list is missing the fasteners at find 40; please add them.\nECO-26-01371 | Technical Review | Aerospace Systems | Design change | Affected items incomplete: 100-008324 is changed but not listed.\nECO-26-01374 | Change Board | Electrical Products | Design change | Affected parts list is missing the fasteners at find 10; please add them.\nECO-26-01390 | Technical Review | Electrical Products | Design change | Add scrap and rework cost for existing stock of 100-006150.\nECO-26-01389 | Technical Review | Electrical Products | Design change | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01373 | Change Board | Electrical Products | Part obsolescence | Only the top assembly is listed as affected. Add the child parts that change.\nECO-26-01400 | Technical Review | Electrical Products | Design change | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01403 | Technical Review | Electrical Products | Design change | No cost impact estimate. Plants need it for inventory disposition.\nECO-26-01374 | Technical Review | Electrical Products | Design change | Affected parts list is missing the fasteners at find 10; please add them.\nECO-26-01375 | Change Board | Electrical Products | Design change | Affected items incomplete: 450-005880 is changed but not listed.\nECO-26-01405 | Technical Review | Electrical Products | Document change | Missing cost impact; board will not review without it.\nECO-26-01388 | Change Board | Electrical Products | Part obsolescence | Drawing and model disagree on the hole pattern; update the drawing.\nECO-26-01416 | Technical Review | eMobility | Design change | Affected parts list is missing the fasteners at find 20; please add them.\nECO-26-01420 | Technical Review | Electrical Products | Document change | Effectivity date conflicts with the SAP cutover; pick a date after it.",
+  "output": {
+    "headline": "Most ECOs come back because the submitter has not captured the full scope of the change, especially the affected parts, with missing cost impact and out-of-date drawings close behind.",
+    "themes": [
+      {
+        "name": "Affected parts and where-used incomplete",
+        "description": "Reviewers return ECOs whose affected-items list stops at the top assembly or the drawing, leaves out changed child parts or fasteners, or has no where-used to show downstream impact.",
+        "eco_ids": [
+          "ECO-26-01028",
+          "ECO-26-01040",
+          "ECO-26-00967",
+          "ECO-26-01037",
+          "ECO-26-01048",
+          "ECO-26-01065",
+          "ECO-26-01063",
+          "ECO-26-01073",
+          "ECO-26-01078",
+          "ECO-26-01077",
+          "ECO-26-01083",
+          "ECO-26-01003",
+          "ECO-26-01107",
+          "ECO-26-01113",
+          "ECO-26-01133",
+          "ECO-26-01146",
+          "ECO-26-01152",
+          "ECO-26-01149",
+          "ECO-26-01151",
+          "ECO-26-01111",
+          "ECO-26-01098",
+          "ECO-26-01156",
+          "ECO-26-01182",
+          "ECO-26-01177",
+          "ECO-26-01184",
+          "ECO-26-01190",
+          "ECO-26-01198",
+          "ECO-26-01186",
+          "ECO-26-01202",
+          "ECO-26-01181",
+          "ECO-26-01152",
+          "ECO-26-01232",
+          "ECO-26-01227",
+          "ECO-26-01182",
+          "ECO-26-01247",
+          "ECO-26-01253",
+          "ECO-26-01259",
+          "ECO-26-01286",
+          "ECO-26-01115",
+          "ECO-26-01294",
+          "ECO-26-01323",
+          "ECO-26-01298",
+          "ECO-26-01337",
+          "ECO-26-01313",
+          "ECO-26-01341",
+          "ECO-26-01339",
+          "ECO-26-01345",
+          "ECO-26-01323",
+          "ECO-26-01376",
+          "ECO-26-01377",
+          "ECO-26-01371",
+          "ECO-26-01374",
+          "ECO-26-01389",
+          "ECO-26-01373",
+          "ECO-26-01374",
+          "ECO-26-01375",
+          "ECO-26-01416"
+        ],
+        "quotes": [
+          {
+            "eco": "ECO-26-01040",
+            "quote": "Only the top assembly is listed as affected. Add the child parts that change."
+          },
+          {
+            "eco": "ECO-26-01028",
+            "quote": "Affected parts list is missing the fasteners at find 10; please add them."
+          },
+          {
+            "eco": "ECO-26-01077",
+            "quote": "Where-used not attached, so we cannot see the impact on 100-008967."
+          }
+        ],
+        "prevention": "At submit, have PLM generate the BOM explosion and where-used for every changed item and block submission until each changed child part and find-number item is either added as affected or explicitly marked unaffected."
+      },
+      {
+        "name": "Cost impact missing",
+        "description": "Reviewers return ECOs with a blank or missing cost impact, including no scrap and rework cost for existing stock that plants need for inventory disposition.",
+        "eco_ids": [
+          "ECO-26-01033",
+          "ECO-26-01026",
+          "ECO-26-01050",
+          "ECO-26-01077",
+          "ECO-26-01098",
+          "ECO-26-01103",
+          "ECO-26-01137",
+          "ECO-26-01093",
+          "ECO-26-01172",
+          "ECO-26-01152",
+          "ECO-26-01191",
+          "ECO-26-01190",
+          "ECO-26-01215",
+          "ECO-26-01222",
+          "ECO-26-01194",
+          "ECO-26-01229",
+          "ECO-26-01257",
+          "ECO-26-01115",
+          "ECO-26-01256",
+          "ECO-26-01267",
+          "ECO-26-01273",
+          "ECO-26-01281",
+          "ECO-26-01290",
+          "ECO-26-01306",
+          "ECO-26-01331",
+          "ECO-26-01340",
+          "ECO-26-01352",
+          "ECO-26-01354",
+          "ECO-26-01367",
+          "ECO-26-01337",
+          "ECO-26-01390",
+          "ECO-26-01403",
+          "ECO-26-01405"
+        ],
+        "quotes": [
+          {
+            "eco": "ECO-26-01026",
+            "quote": "No cost impact estimate. Plants need it for inventory disposition."
+          },
+          {
+            "eco": "ECO-26-01033",
+            "quote": "Add scrap and rework cost for existing stock of 210-008709."
+          },
+          {
+            "eco": "ECO-26-01077",
+            "quote": "Missing cost impact; board will not review without it."
+          }
+        ],
+        "prevention": "Make the cost impact section a required field at submit, with a structured line for scrap and rework cost of on-hand stock for each affected part."
+      },
+      {
+        "name": "Drawing not updated or inconsistent with model",
+        "description": "Reviewers return ECOs where the attached drawing is still at the old revision, only a markup is attached, or the drawing disagrees with the model.",
+        "eco_ids": [
+          "ECO-26-00972",
+          "ECO-26-01019",
+          "ECO-26-01022",
+          "ECO-26-01062",
+          "ECO-26-01075",
+          "ECO-26-01069",
+          "ECO-26-01089",
+          "ECO-26-01078",
+          "ECO-26-01145",
+          "ECO-26-01144",
+          "ECO-26-01162",
+          "ECO-26-01148",
+          "ECO-26-01166",
+          "ECO-26-01194",
+          "ECO-26-01218",
+          "ECO-26-01182",
+          "ECO-26-01264",
+          "ECO-26-01268",
+          "ECO-26-01270",
+          "ECO-26-01234",
+          "ECO-26-01287",
+          "ECO-26-01266",
+          "ECO-26-01277",
+          "ECO-26-01311",
+          "ECO-26-01323",
+          "ECO-26-01348",
+          "ECO-26-01362",
+          "ECO-26-01400",
+          "ECO-26-01388"
+        ],
+        "quotes": [
+          {
+            "eco": "ECO-26-00972",
+            "quote": "Drawing for 330-005584 is still at the old revision; attach the updated drawing."
+          },
+          {
+            "eco": "ECO-26-01019",
+            "quote": "Drawing and model disagree on the hole pattern; update the drawing."
+          },
+          {
+            "eco": "ECO-26-01022",
+            "quote": "Markup attached but the released drawing is not updated."
+          }
+        ],
+        "prevention": "At submit, check that each affected part has a drawing at the new pending revision (not a markup), and that it was saved after the latest model change."
+      },
+      {
+        "name": "Effectivity not workable",
+        "description": "Reviewers return ECOs whose effectivity date conflicts with the SAP cutover or with supplier stock run-out, or that lack serial-number effectivity for field units.",
+        "eco_ids": [
+          "ECO-26-01143",
+          "ECO-26-01155",
+          "ECO-26-01160",
+          "ECO-26-01239",
+          "ECO-26-01250",
+          "ECO-26-01115",
+          "ECO-26-01272",
+          "ECO-26-01288",
+          "ECO-26-01317",
+          "ECO-26-01311",
+          "ECO-26-01329",
+          "ECO-26-01359",
+          "ECO-26-01387",
+          "ECO-26-01420"
+        ],
+        "quotes": [
+          {
+            "eco": "ECO-26-01143",
+            "quote": "Effectivity date conflicts with the SAP cutover; pick a date after it."
+          },
+          {
+            "eco": "ECO-26-01239",
+            "quote": "Effectivity date is before supplier stock runs out; align with purchasing."
+          },
+          {
+            "eco": "ECO-26-01155",
+            "quote": "Effectivity by serial number is missing for the field units."
+          }
+        ],
+        "prevention": "Add effectivity validation at submit that blocks dates inside the SAP cutover window, requires purchasing sign-off on stock run-out, and requires serial-number effectivity when field units are affected."
+      },
+      {
+        "name": "Export classification missing",
+        "description": "Reviewers return ECOs that introduce new parts without an export classification or trade compliance review.",
+        "eco_ids": [
+          "ECO-26-01035",
+          "ECO-26-01056",
+          "ECO-26-01054",
+          "ECO-26-01050",
+          "ECO-26-01079",
+          "ECO-26-01120",
+          "ECO-26-01136",
+          "ECO-26-01212",
+          "ECO-26-01298"
+        ],
+        "quotes": [
+          {
+            "eco": "ECO-26-01056",
+            "quote": "New part 210-004633 has no export classification; route to Trade Compliance first."
+          },
+          {
+            "eco": "ECO-26-01035",
+            "quote": "Export review missing for the new bracket before release."
+          }
+        ],
+        "prevention": "Make export classification a required attribute on new parts and automatically route any ECO with an unclassified new part to Trade Compliance before technical review."
+      },
+      {
+        "name": "Wrong change type",
+        "description": "Reviewers return ECOs submitted under the wrong change type, such as a design change that is really a supplier change or a document-only change.",
+        "eco_ids": [
+          "ECO-26-01041",
+          "ECO-26-01070",
+          "ECO-26-01067",
+          "ECO-26-01098",
+          "ECO-26-01234",
+          "ECO-26-01240"
+        ],
+        "quotes": [
+          {
+            "eco": "ECO-26-01041",
+            "quote": "Change type should be supplier change, not design change."
+          },
+          {
+            "eco": "ECO-26-01070",
+            "quote": "This is a document-only change; resubmit as a document change."
+          }
+        ],
+        "prevention": "Replace free choice of change type with a short guided question set in the ECO template (form/fit/function change? source change? documentation only?) that sets the type."
+      }
+    ]
+  }
+}

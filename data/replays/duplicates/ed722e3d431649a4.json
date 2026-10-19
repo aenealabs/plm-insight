@@ -1,0 +1,135 @@
+{
+  "input": "{\n \"finding\": \"3 parts look like the same sheet metal (220X95X3, STAINLESS STEEL 304)\",\n \"parts\": [\n  {\n   \"part_number\": \"100-008623\",\n   \"description\": \"MOUNTING BRACKET 220X95X3 SS304\",\n   \"part_type\": \"Sheet metal\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"STAINLESS STEEL 304\",\n   \"size\": \"220X95X3\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"1.089\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2026-10-01\",\n   \"created_by\": \"E. Duarte\",\n   \"used_in\": \"3\"\n  },\n  {\n   \"part_number\": \"210-008622\",\n   \"description\": \"Bracket, Mounting, 220 x 95 x 3, Stainless Steel 304\",\n   \"part_type\": \"Sheet metal\",\n   \"business_unit\": \"Electrical Products\",\n   \"material\": \"STAINLESS STEEL 304\",\n   \"size\": \"220X95X3\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"1.086\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2026-10-01\",\n   \"created_by\": \"F. Haddad\",\n   \"used_in\": \"3\"\n  },\n  {\n   \"part_number\": \"330-007138\",\n   \"description\": \"Mounting bracket 220x95x3 stainless steel 304\",\n   \"part_type\": \"Sheet metal\",\n   \"business_unit\": \"Electrical Products\",\n   \"material\": \"STAINLESS STEEL 304\",\n   \"size\": \"220X95X3\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"1.066\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2024-09-04\",\n   \"created_by\": \"H. Sato\",\n   \"used_in\": \"1\"\n  }\n ]\n}",
+  "output": {
+    "verdict": "same part",
+    "keep": "100-008623",
+    "reasons": [
+      {
+        "text": "All three parts share the same part type, material, size, unit of measure, make/buy, lifecycle and export classification, so they describe the same stainless sheet metal bracket.",
+        "cites": [
+          {
+            "part_number": "100-008623",
+            "field": "material",
+            "value": "STAINLESS STEEL 304"
+          },
+          {
+            "part_number": "210-008622",
+            "field": "material",
+            "value": "STAINLESS STEEL 304"
+          },
+          {
+            "part_number": "330-007138",
+            "field": "material",
+            "value": "STAINLESS STEEL 304"
+          },
+          {
+            "part_number": "100-008623",
+            "field": "size",
+            "value": "220X95X3"
+          },
+          {
+            "part_number": "210-008622",
+            "field": "size",
+            "value": "220X95X3"
+          },
+          {
+            "part_number": "330-007138",
+            "field": "size",
+            "value": "220X95X3"
+          },
+          {
+            "part_number": "100-008623",
+            "field": "export_class",
+            "value": "EAR99"
+          },
+          {
+            "part_number": "210-008622",
+            "field": "export_class",
+            "value": "EAR99"
+          },
+          {
+            "part_number": "330-007138",
+            "field": "export_class",
+            "value": "EAR99"
+          }
+        ]
+      },
+      {
+        "text": "The weights differ by only about 2 percent, which is consistent with the same part modeled slightly differently rather than a different design.",
+        "cites": [
+          {
+            "part_number": "100-008623",
+            "field": "weight_kg",
+            "value": "1.089"
+          },
+          {
+            "part_number": "210-008622",
+            "field": "weight_kg",
+            "value": "1.086"
+          },
+          {
+            "part_number": "330-007138",
+            "field": "weight_kg",
+            "value": "1.066"
+          }
+        ]
+      },
+      {
+        "text": "100-008623 and 210-008622 tie on assembly usage, are both Released, and were created on the same date, so the keep rules do not separate them and 100-008623 is a tentative choice.",
+        "cites": [
+          {
+            "part_number": "100-008623",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "210-008622",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "100-008623",
+            "field": "created",
+            "value": "2026-10-01"
+          },
+          {
+            "part_number": "210-008622",
+            "field": "created",
+            "value": "2026-10-01"
+          },
+          {
+            "part_number": "100-008623",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "210-008622",
+            "field": "lifecycle",
+            "value": "Released"
+          }
+        ]
+      },
+      {
+        "text": "330-007138 is the oldest but is used in only one assembly, so usage takes priority and it should not be the part kept.",
+        "cites": [
+          {
+            "part_number": "330-007138",
+            "field": "created",
+            "value": "2024-09-04"
+          },
+          {
+            "part_number": "330-007138",
+            "field": "used_in",
+            "value": "1"
+          }
+        ]
+      }
+    ],
+    "before_merging": [
+      "Decide with E. Duarte and F. Haddad whether to keep 100-008623 or 210-008622, since usage, lifecycle and creation date are tied.",
+      "Confirm the parts are used interchangeably across business units, as 100-008623 belongs to Aerospace Systems while the others belong to Electrical Products.",
+      "Have an engineer confirm the small weight differences (1.066 to 1.089 kg) are modeling differences and not a design change such as different holes or bends.",
+      "Plan updates to the 7 assemblies that use the parts being retired so they point to the kept part number."
+    ]
+  }
+}

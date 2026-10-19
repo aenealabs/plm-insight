@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+{% if not eco %}
+<div class="page-header"><h1 class="mono">{{ key }}</h1></div>
+<div class="banner warning"><span class="material-symbols-outlined">help</span><div>{{ key }} is not in the current ECO history. <a href="/ecos">Search ECOs</a></div></div>
+{% else %}
+<div class="page-header"><h1 class="long-title">{{ eco.title }}</h1></div>
+<p class="muted" style="margin-top:-8px"><span class="mono">{{ eco.eco }}</span> · {{ eco.business_unit }} · {{ eco.change_type }}{% if eco.priority == 'expedite' %} · <span class="chip warning">expedite</span>{% endif %} · originator {{ eco.originator }} · {{ eco.affected_parts }} affected parts</p>
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header"><h3>Where it has been</h3></div>
+    <ol class="timeline">
+      {% for v in events %}{% set dwell = v.dwell(as_of) | round(1) %}
+      <li class="{{ v.outcome | replace(' ', '-') }}">
+        <div class="primary">{{ v.stage }} <span class="muted">· {{ v.actor }}</span></div>
+        <div class="muted" style="font-size:12px">{{ v.entered.strftime('%Y-%m-%d') }}{% if v.left %} to {{ v.left.strftime('%Y-%m-%d') }}{% else %}, still here{% endif %} · {{ dwell }} days
+          {% if a and v.stage in a.stage_p80 and dwell > a.stage_p80[v.stage] %}<span class="chip warning">slower than 80% of visits</span>{% endif %}</div>
+        {% if v.outcome == 'returned' %}<div class="returned-note"><span class="material-symbols-outlined">undo</span>Returned: "{{ v.comment }}"</div>{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>Summary</h3></div>
+    <div class="card-body"><dl class="facts-list">
+      <dt>Status</dt><dd>{{ eco.status }}</dd>
+      <dt>Created</dt><dd>{{ eco.created.strftime('%Y-%m-%d') }}</dd>
+      {% if eco.released %}<dt>Released</dt><dd>{{ eco.released.strftime('%Y-%m-%d') }} · {{ ((eco.released - eco.created).total_seconds() / 86400) | round(1) }} days</dd>
+      {% else %}<dt>Age</dt><dd>{{ ((as_of - eco.created).total_seconds() / 86400) | round(1) }} days{% if a %} (80% of ECOs finish within {{ a.cycle_p80 }}){% endif %}</dd>{% endif %}
+      <dt>Returns</dt><dd>{{ events | selectattr('outcome', 'equalto', 'returned') | list | length }}</dd>
+    </dl></div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

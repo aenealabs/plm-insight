@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PLM Insight</title>
+  {% include "mission_control/head.html" %}
+  <link rel="stylesheet" href="{{ url_for('static', path='css/app.css') }}">
+  <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
+  <script src="{{ url_for('static', path='js/app.js') }}"></script>
+</head>
+<body>
+<div class="shell">
+  <header class="appbar">
+    <button id="nav-toggle" class="icon-button nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+      <span class="material-symbols-outlined">menu</span></button>
+    {% include "mission_control/suite_menu.html" %}
+    <span class="subtitle">Product Engineering &amp; R&amp;D</span>
+    <span class="spacer"></span>
+    <span class="mode-chip" title="Findings come from readable rules; the AI only explains">
+      <span class="material-symbols-outlined" style="font-size:18px">{{ 'cloud_off' if provider_name == 'replay' else 'auto_awesome' }}</span>
+      {{ 'Rules + offline AI demo' if provider_name == 'replay' else 'Rules + live AI · ' ~ provider_name }}</span>
+    {% if auth_mode == 'oidc' %}
+    <span class="user-switch" title="{{ user.email }}">
+      <span class="material-symbols-outlined" style="font-size:20px">{{ 'verified_user' if user.approver else 'account_circle' }}</span>
+      <span class="user-name">{{ user.name }} · {{ user.role }}</span>
+      <a class="sign-out" href="/logout">Sign out</a>
+    </span>
+    {% else %}
+    <form method="post" action="/user" class="user-switch" title="Acting as (demo users). A shield marks data stewards and Trade Compliance.">
+      <span class="material-symbols-outlined" style="font-size:20px">{{ 'verified_user' if user.approver else 'account_circle' }}</span>
+      <select name="user_id" aria-label="Acting as" onchange="this.form.submit()">
+        {% for u in users %}<option value="{{ u.id }}" {{ 'selected' if u.id == user.id }}>{{ u.name }} · {{ u.role }}{{ ' · compliance' if u.compliance else ' · steward' if u.approver }}</option>{% endfor %}
+      </select>
+    </form>
+    {% endif %}
+    {% include "mission_control/help_button.html" %}
+    <button id="theme-toggle" class="icon-button" aria-label="Toggle light or dark theme">
+      <span id="theme-icon" class="material-symbols-outlined">dark_mode</span>
+    </button>
+  </header>
+
+  <nav class="drawer" id="drawer" aria-label="Main">
+    <a class="nav-item {{ 'active' if nav == 'scorecard.html' }}" href="/">
+      <span class="material-symbols-outlined">monitoring</span>Scorecard</a>
+    <a class="nav-item {{ 'active' if nav in ('issues.html', 'issue_detail.html') and (queue | default('steward')) != 'compliance' and not (issue is defined and issue.queue == 'compliance') }}" href="/issues">
+      <span class="material-symbols-outlined">rule</span>Steward queue</a>
+    <a class="nav-item {{ 'active' if (queue is defined and queue == 'compliance') or (issue is defined and issue.queue == 'compliance') }}" href="/issues?queue=compliance">
+      <span class="material-symbols-outlined">gpp_maybe</span>Trade Compliance</a>
+    <a class="nav-item {{ 'active' if nav in ('ecos.html', 'eco_detail.html') }}" href="/ecos">
+      <span class="material-symbols-outlined">change_circle</span>ECO analytics</a>
+    <a class="nav-item {{ 'active' if nav == 'changes.html' }}" href="/changes">
+      <span class="material-symbols-outlined">playlist_add_check</span>Change list</a>
+    <a class="nav-item {{ 'active' if nav == 'data.html' }}" href="/data">
+      <span class="material-symbols-outlined">upload_file</span>Data</a>
+    <a class="nav-item {{ 'active' if nav == 'audit.html' }}" href="/audit">
+      <span class="material-symbols-outlined">history</span>Audit log</a>
+    <a class="nav-item {{ 'active' if nav == 'mission_control/help.html' }}" href="/help">
+      <span class="material-symbols-outlined">help</span>Help</a>
+    <div class="footer">
+      Part of {{ suite_name }}.<br>
+      Demo data is generated and fictional.<br>
+      Styled with Brightlayer UI (open source).
+    </div>
+  </nav>
+
+  <main>
+    <div class="page">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+</div>
+</body>
+</html>

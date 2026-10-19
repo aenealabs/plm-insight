@@ -1,0 +1,145 @@
+{
+  "input": "{\n \"finding\": \"2 parts look like the same sheet metal (290X40X2, STAINLESS STEEL 304)\",\n \"parts\": [\n  {\n   \"part_number\": \"210-004256\",\n   \"description\": \"Support plate 290x40x2 stainless steel 304\",\n   \"part_type\": \"Sheet metal\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"STAINLESS STEEL 304\",\n   \"size\": \"290X40X2\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"1.430\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"9A610.x\",\n   \"created\": \"2014-09-10\",\n   \"created_by\": \"J. Adeyemi\",\n   \"used_in\": \"4\"\n  },\n  {\n   \"part_number\": \"210-008577\",\n   \"description\": \"SUPPORT PLATE 290X40X2 SS304\",\n   \"part_type\": \"Sheet metal\",\n   \"business_unit\": \"Industrial Controls\",\n   \"material\": \"STAINLESS STEEL 304\",\n   \"size\": \"290X40X2\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"1.403\",\n   \"make_buy\": \"make\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2020-11-30\",\n   \"created_by\": \"A. Novak\",\n   \"used_in\": \"0\"\n  }\n ]\n}",
+  "output": {
+    "verdict": "needs engineering check",
+    "keep": "",
+    "reasons": [
+      {
+        "text": "Both parts have the same sheet metal type, material, size, unit of measure, make/buy setting and Released lifecycle, so they appear to describe the same physical plate.",
+        "cites": [
+          {
+            "part_number": "210-004256",
+            "field": "part_type",
+            "value": "Sheet metal"
+          },
+          {
+            "part_number": "210-008577",
+            "field": "part_type",
+            "value": "Sheet metal"
+          },
+          {
+            "part_number": "210-004256",
+            "field": "material",
+            "value": "STAINLESS STEEL 304"
+          },
+          {
+            "part_number": "210-008577",
+            "field": "material",
+            "value": "STAINLESS STEEL 304"
+          },
+          {
+            "part_number": "210-004256",
+            "field": "size",
+            "value": "290X40X2"
+          },
+          {
+            "part_number": "210-008577",
+            "field": "size",
+            "value": "290X40X2"
+          },
+          {
+            "part_number": "210-004256",
+            "field": "uom",
+            "value": "EA"
+          },
+          {
+            "part_number": "210-008577",
+            "field": "uom",
+            "value": "EA"
+          },
+          {
+            "part_number": "210-004256",
+            "field": "make_buy",
+            "value": "make"
+          },
+          {
+            "part_number": "210-008577",
+            "field": "make_buy",
+            "value": "make"
+          },
+          {
+            "part_number": "210-004256",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "210-008577",
+            "field": "lifecycle",
+            "value": "Released"
+          }
+        ]
+      },
+      {
+        "text": "The export classifications conflict (9A610.x versus EAR99) across different business units, so merging without review could misclassify a controlled part or over-control an uncontrolled one.",
+        "cites": [
+          {
+            "part_number": "210-004256",
+            "field": "export_class",
+            "value": "9A610.x"
+          },
+          {
+            "part_number": "210-008577",
+            "field": "export_class",
+            "value": "EAR99"
+          },
+          {
+            "part_number": "210-004256",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "210-008577",
+            "field": "business_unit",
+            "value": "Industrial Controls"
+          }
+        ]
+      },
+      {
+        "text": "The weights are close but not identical (1.430 versus 1.403), which looks like a possible digit transposition, but it should be confirmed.",
+        "cites": [
+          {
+            "part_number": "210-004256",
+            "field": "weight_kg",
+            "value": "1.430"
+          },
+          {
+            "part_number": "210-008577",
+            "field": "weight_kg",
+            "value": "1.403"
+          }
+        ]
+      },
+      {
+        "text": "If confirmed as the same part, 210-004256 would be the one to keep because it is used in more assemblies and is older, while 210-008577 is unused.",
+        "cites": [
+          {
+            "part_number": "210-004256",
+            "field": "used_in",
+            "value": "4"
+          },
+          {
+            "part_number": "210-008577",
+            "field": "used_in",
+            "value": "0"
+          },
+          {
+            "part_number": "210-004256",
+            "field": "created",
+            "value": "2014-09-10"
+          },
+          {
+            "part_number": "210-008577",
+            "field": "created",
+            "value": "2020-11-30"
+          }
+        ]
+      }
+    ],
+    "before_merging": [
+      "Have export compliance confirm the correct classification for the plate (9A610.x vs EAR99) before any merge, since the retained part's classification will apply to all usages.",
+      "Confirm with J. Adeyemi and A. Novak that the two plates share identical geometry, features and finish beyond the listed size and material.",
+      "Verify the correct weight, since the recorded values differ (1.430 vs 1.403) and should be checked against the plate's dimensions and material.",
+      "Confirm whether the Aerospace Systems design carries any aerospace-specific requirements that make it unsuitable as a direct replacement for the Industrial Controls part, or vice versa."
+    ]
+  }
+}

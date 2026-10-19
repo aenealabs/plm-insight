@@ -1,0 +1,134 @@
+{
+  "input": "{\n \"finding\": \"2 parts look like the same fastener (M12X35, BRASS)\",\n \"parts\": [\n  {\n   \"part_number\": \"210-004471\",\n   \"description\": \"Screw, Pan Head, m12 x 35, Brass\",\n   \"part_type\": \"Fastener\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"material\": \"BRASS\",\n   \"size\": \"M12X35\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.002\",\n   \"make_buy\": \"buy\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2016-02-07\",\n   \"created_by\": \"G. Brennan\",\n   \"used_in\": \"4\"\n  },\n  {\n   \"part_number\": \"210-008652\",\n   \"description\": \"PAN HEAD SCREW M12X35 BRS\",\n   \"part_type\": \"Fastener\",\n   \"business_unit\": \"eMobility\",\n   \"material\": \"BRASS\",\n   \"size\": \"M12X35\",\n   \"uom\": \"EA\",\n   \"weight_kg\": \"0.002\",\n   \"make_buy\": \"buy\",\n   \"lifecycle\": \"Released\",\n   \"export_class\": \"EAR99\",\n   \"created\": \"2018-11-13\",\n   \"created_by\": \"I. Moreau\",\n   \"used_in\": \"3\"\n  }\n ]\n}",
+  "output": {
+    "verdict": "same part",
+    "keep": "210-004471",
+    "reasons": [
+      {
+        "text": "Both parts are brass pan head screws with the same size, material, weight and unit of measure, differing only in description formatting.",
+        "cites": [
+          {
+            "part_number": "210-004471",
+            "field": "description",
+            "value": "Screw, Pan Head, m12 x 35, Brass"
+          },
+          {
+            "part_number": "210-008652",
+            "field": "description",
+            "value": "PAN HEAD SCREW M12X35 BRS"
+          },
+          {
+            "part_number": "210-004471",
+            "field": "size",
+            "value": "M12X35"
+          },
+          {
+            "part_number": "210-008652",
+            "field": "size",
+            "value": "M12X35"
+          },
+          {
+            "part_number": "210-004471",
+            "field": "material",
+            "value": "BRASS"
+          },
+          {
+            "part_number": "210-008652",
+            "field": "material",
+            "value": "BRASS"
+          },
+          {
+            "part_number": "210-004471",
+            "field": "weight_kg",
+            "value": "0.002"
+          },
+          {
+            "part_number": "210-008652",
+            "field": "weight_kg",
+            "value": "0.002"
+          }
+        ]
+      },
+      {
+        "text": "Both are bought, Released fasteners with the same EAR99 export classification, so no lifecycle or compliance difference separates them.",
+        "cites": [
+          {
+            "part_number": "210-004471",
+            "field": "make_buy",
+            "value": "buy"
+          },
+          {
+            "part_number": "210-008652",
+            "field": "make_buy",
+            "value": "buy"
+          },
+          {
+            "part_number": "210-004471",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "210-008652",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "210-004471",
+            "field": "export_class",
+            "value": "EAR99"
+          },
+          {
+            "part_number": "210-008652",
+            "field": "export_class",
+            "value": "EAR99"
+          }
+        ]
+      },
+      {
+        "text": "Keep 210-004471 because it is used in more assemblies and was created earlier than 210-008652.",
+        "cites": [
+          {
+            "part_number": "210-004471",
+            "field": "used_in",
+            "value": "4"
+          },
+          {
+            "part_number": "210-008652",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "210-004471",
+            "field": "created",
+            "value": "2016-02-07"
+          },
+          {
+            "part_number": "210-008652",
+            "field": "created",
+            "value": "2018-11-13"
+          }
+        ]
+      },
+      {
+        "text": "The parts belong to different business units, so the merge affects assemblies owned by both Aerospace Systems and eMobility.",
+        "cites": [
+          {
+            "part_number": "210-004471",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "210-008652",
+            "field": "business_unit",
+            "value": "eMobility"
+          }
+        ]
+      }
+    ],
+    "before_merging": [
+      "Confirm with G. Brennan and I. Moreau that both screws share the same thread pitch, head dimensions and any finish or specification not captured in these attributes.",
+      "Check whether Aerospace Systems requires qualification or approved-source controls on 210-004471 that the eMobility usage of 210-008652 would also need to meet.",
+      "Review the 3 assemblies using 210-008652 and plan their update to reference 210-004471 before marking 210-008652 superseded."
+    ]
+  }
+}

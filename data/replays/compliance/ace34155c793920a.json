@@ -1,0 +1,112 @@
+{
+  "input": "{\n \"finding\": \"100-004300 has no export classification: Aerospace Systems is an export-controlled business unit\",\n \"part\": {\n  \"part_number\": \"100-004300\",\n  \"description\": \"SOCKET HEAD CAP SCREW M8X35 BRS\",\n  \"part_type\": \"Fastener\",\n  \"business_unit\": \"Aerospace Systems\",\n  \"material\": \"BRASS\",\n  \"size\": \"M8X35\",\n  \"uom\": \"EA\",\n  \"weight_kg\": \"0.058\",\n  \"make_buy\": \"buy\",\n  \"lifecycle\": \"Released\",\n  \"export_class\": \"\",\n  \"created\": \"2024-01-01\",\n  \"created_by\": \"L. Fischer\",\n  \"used_in\": \"3\"\n },\n \"controlled_assemblies_using_it\": [\n  {\n   \"part_number\": \"450-009020\",\n   \"description\": \"DRIVE ASSY B53\",\n   \"business_unit\": \"Aerospace Systems\",\n   \"lifecycle\": \"Released\"\n  }\n ]\n}",
+  "output": {
+    "summary": "100-004300 is a purchased, released brass socket head cap screw (M8X35) in the Aerospace Systems business unit, used in the controlled drive assembly 450-009020. It has no export classification recorded, and Aerospace Systems is an export-controlled business unit, so Trade Compliance needs to make a classification decision.",
+    "evidence": [
+      {
+        "text": "100-004300 is described as a SOCKET HEAD CAP SCREW M8X35 BRS, a Fastener made of BRASS in size M8X35, weighing 0.058 kg each and sourced as a buy part.",
+        "cites": [
+          {
+            "part_number": "100-004300",
+            "field": "description",
+            "value": "SOCKET HEAD CAP SCREW M8X35 BRS"
+          },
+          {
+            "part_number": "100-004300",
+            "field": "part_type",
+            "value": "Fastener"
+          },
+          {
+            "part_number": "100-004300",
+            "field": "material",
+            "value": "BRASS"
+          },
+          {
+            "part_number": "100-004300",
+            "field": "size",
+            "value": "M8X35"
+          },
+          {
+            "part_number": "100-004300",
+            "field": "weight_kg",
+            "value": "0.058"
+          },
+          {
+            "part_number": "100-004300",
+            "field": "make_buy",
+            "value": "buy"
+          }
+        ]
+      },
+      {
+        "text": "The part is Released in the Aerospace Systems business unit with an empty export classification field.",
+        "cites": [
+          {
+            "part_number": "100-004300",
+            "field": "lifecycle",
+            "value": "Released"
+          },
+          {
+            "part_number": "100-004300",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "100-004300",
+            "field": "export_class",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "text": "The part has a where-used count of 3, and one listed controlled assembly using it is 450-009020, DRIVE ASSY B53, a Released Aerospace Systems assembly.",
+        "cites": [
+          {
+            "part_number": "100-004300",
+            "field": "used_in",
+            "value": "3"
+          },
+          {
+            "part_number": "450-009020",
+            "field": "description",
+            "value": "DRIVE ASSY B53"
+          },
+          {
+            "part_number": "450-009020",
+            "field": "business_unit",
+            "value": "Aerospace Systems"
+          },
+          {
+            "part_number": "450-009020",
+            "field": "lifecycle",
+            "value": "Released"
+          }
+        ]
+      },
+      {
+        "text": "The part record was created on 2024-01-01 by L. Fischer, who may be able to explain its sourcing and design origin.",
+        "cites": [
+          {
+            "part_number": "100-004300",
+            "field": "created",
+            "value": "2024-01-01"
+          },
+          {
+            "part_number": "100-004300",
+            "field": "created_by",
+            "value": "L. Fischer"
+          }
+        ]
+      }
+    ],
+    "questions": [
+      "Is 100-004300 a commercial off-the-shelf catalog screw purchased to a published industry standard (e.g., ISO/DIN), or is it made to a company or customer drawing?",
+      "Was this screw designed or modified in any way (special material, coating, tolerances, thread form, testing) specifically for DRIVE ASSY B53 or another defense/aerospace application?",
+      "Does the screw have the same form, fit, and function as fasteners used in commercial or civil applications?",
+      "What are the other two assemblies that use this part (used_in count is 3), and what are their export classifications?",
+      "Who is the supplier and does the supplier provide any export classification for this part?",
+      "Was the part developed under any government or defense contract, or with technical data received from a customer?",
+      "Why is brass specified for this screw, and is the material choice driven by a performance requirement unique to the end item?"
+    ]
+  }
+}

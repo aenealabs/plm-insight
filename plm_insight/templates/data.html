@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header"><h1>Data</h1><span class="muted">Import a part master and BOM export. Rules run on import; earlier decisions carry over.</span></div>
+{% if message %}<div class="banner error" role="alert"><span class="material-symbols-outlined">error</span><div>{{ message }}</div></div>{% endif %}
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header"><h3>Imports</h3></div>
+    <table><thead><tr><th>Export</th><th class="num">Parts</th><th class="num">BOM lines</th><th>Loaded</th></tr></thead>
+      <tbody>{% for d in datasets | reverse %}<tr><td>{{ d.name }}<div class="muted" style="font-size:12px">Export-controlled: {{ d.controlled | join(', ') or 'none' }}</div></td><td class="num">{{ '{:,}'.format(d.parts) }}</td><td class="num">{{ '{:,}'.format(d.bom_lines) }}</td><td style="font-size:12px">{{ d.loaded_at.strftime('%Y-%m-%d %H:%M') }}<div class="muted">{{ d.loaded_by }}</div></td></tr>{% endfor %}</tbody></table>
+    <div class="card-header" style="border-top:1px solid var(--divider)"><h3>ECO histories</h3></div>
+    <table><thead><tr><th>History</th><th class="num">ECOs</th><th class="num">Events</th><th>Loaded</th></tr></thead>
+      <tbody>{% for d in eco_datasets | reverse %}<tr><td>{{ d.name }}<div class="muted" style="font-size:12px">as of {{ d.as_of.strftime('%Y-%m-%d') }}</div></td><td class="num">{{ '{:,}'.format(d.ecos) }}</td><td class="num">{{ '{:,}'.format(d.events) }}</td><td style="font-size:12px">{{ d.loaded_at.strftime('%Y-%m-%d %H:%M') }}<div class="muted">{{ d.loaded_by }}</div></td></tr>{% else %}<tr><td colspan="4" class="muted">None loaded.</td></tr>{% endfor %}</tbody></table>
+  </div>
+  <form class="card" method="post" action="/data" enctype="multipart/form-data">
+    <div class="card-header"><h3>Import an export</h3></div>
+    <div class="card-body form-grid">
+      <label class="wide">Name <input name="name" placeholder="e.g. PLM export 2026-11-01"></label>
+      <label class="wide">Parts CSV <input type="file" name="parts" accept=".csv,text/csv" required></label>
+      <label class="wide">BOM CSV <input type="file" name="bom" accept=".csv,text/csv" required></label>
+      <label class="wide">Export-controlled business units (comma separated) <input name="controlled" value="{{ datasets[-1].controlled | join(', ') if datasets else '' }}"></label>
+      <div class="wide muted" style="font-size:12px">Parts columns: part_number, description, part_type, business_unit, lifecycle (required); material, size, uom, weight_kg, make_buy, export_class, superseded_by, created, created_by (optional). BOM columns: parent, find_number, child, quantity, uom.</div>
+      <div class="wide"><button class="button contained" type="submit">Import and run rules</button></div>
+    </div>
+  </form>
+  <form class="card" method="post" action="/data/ecos" enctype="multipart/form-data">
+    <div class="card-header"><h3>Import an ECO history</h3></div>
+    <div class="card-body form-grid">
+      <label class="wide">Name <input name="name" placeholder="e.g. ECO export 2026-11-01"></label>
+      <label class="wide">ECOs CSV <input type="file" name="ecos" accept=".csv,text/csv" required></label>
+      <label class="wide">Stage events CSV <input type="file" name="events" accept=".csv,text/csv" required></label>
+      <div class="wide muted" style="font-size:12px">ECO columns: eco, title, business_unit, change_type, created, status (required); priority, originator, affected_parts, released. Event columns: eco, seq, stage, actor, entered, outcome (required); left, comment. Times like 2026-03-04T09:30, taken as UTC.</div>
+      <div class="wide"><button class="button contained" type="submit">Import ECO history</button></div>
+    </div>
+  </form>
+</div>
+{% endblock %}

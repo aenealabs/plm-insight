@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% macro hl(text) %}{{ text | highlight_terms(terms) }}{% endmacro %}
+{% block content %}
+<div class="page-header">
+  <h1>Audit log</h1>
+  <span class="muted">Every import, decision, and export, with who and when.</span>
+</div>
+
+{% if message %}<div class="banner error" role="alert"><span class="material-symbols-outlined">error</span><div>{{ message }}</div></div>{% endif %}
+
+<form method="get" action="/audit" class="card filter-bar">
+  <input type="text" name="q" value="{{ query.text if not plan else '' }}" placeholder="Words in the log" aria-label="Search text">
+  <select name="actor_filter" aria-label="Person">
+    <option value="">Anyone</option>
+    {% for p in people %}<option value="{{ p }}" {{ 'selected' if not plan and query.actor == p }}>{{ p }}</option>{% endfor %}
+  </select>
+  <select name="category" aria-label="Category">
+    <option value="">Any activity</option>
+    {% for key, label in categories.items() %}<option value="{{ key }}" {{ 'selected' if not plan and key in query.categories }}>{{ label }}</option>{% endfor %}
+  </select>
+  <input type="text" name="item" value="{{ query.item_keys | join(' ') if not plan else '' }}" placeholder="Issue or part, e.g. ISS-12" aria-label="Item key" style="max-width:150px">
+  <input type="date" name="since" value="{{ query.since or '' if not plan else '' }}" aria-label="From date">
+  <input type="date" name="until" value="{{ query.until or '' if not plan else '' }}" aria-label="To date">
+  <button class="button outlined" type="submit"><span class="material-symbols-outlined">filter_list</span>Search</button>
+  {% if not query.is_empty() or plan %}<a class="button text" href="/audit">Clear</a>{% endif %}
+</form>
+
+<div class="card">
+  <div class="card-header"><h3>{{ 'Matching events' if not query.is_empty() else 'All events' }}</h3>
+    <span class="chip outlined">{{ total | plural('event') }}</span>
+    {% if total > page_size %}<span class="muted" style="margin-left:auto">Page {{ page }} of {{ ((total - 1) // page_size) + 1 }}</span>{% endif %}</div>
+  {% if events %}
+  <table>
+    <thead><tr><th>#</th><th>When (UTC)</th><th>Actor</th><th>Action</th><th>Detail</th></tr></thead>
+    <tbody>
+    {% for ev in events %}
+      <tr id="ev-{{ ev.id }}" class="{{ 'cited' if ev.id in cited }}">
+        <td class="mono muted">{{ ev.id }}</td>
+        <td class="mono">{{ ev.at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td>{{ hl(ev.actor) }}</td>
+        <td><span class="chip {{ 'primary' if ev.action == 'approve_and_push' }}">{{ ev.action }}</span></td>
+        <td>{{ hl(ev.detail) }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if total > page_size %}
+  <div class="actions" style="padding:8px 16px">
+    {% set args = request.query_params | dict_without('page') %}
+    {% if page > 1 %}<a class="button text" href="/audit?{{ args | urlencode }}&page={{ page - 1 }}">Previous</a>{% endif %}
+    {% if page * page_size < total %}<a class="button text" href="/audit?{{ args | urlencode }}&page={{ page + 1 }}">Next</a>{% endif %}
+  </div>
+  {% endif %}
+  {% else %}
+  <div class="empty">
+    <span class="material-symbols-outlined">history</span>
+    <h3>{{ 'No matching events' if not query.is_empty() else 'No activity yet' }}</h3>
+    <p>{{ 'Try fewer words or a wider date range.' if not query.is_empty() else 'Drafts and approvals will appear here.' }}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
